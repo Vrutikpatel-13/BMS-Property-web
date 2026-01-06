@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tenant Directory - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10"
+                        href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-primary">groups</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex flex-1 flex-col p-6 lg:p-8">
+            <div class="w-full  mx-auto">
+                <!-- PageHeading -->
+                <header class="flex flex-wrap justify-between items-center gap-4 mb-6">
+                    <h1 class="text-text-primary dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
+                        Tenant Directory</h1>
+                        <a href="../../pages/tenants/addtenant.html"
+                            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] gap-2 hover:bg-primary/90">
+                            <span class="material-symbols-outlined text-base">add</span>
+                            <span class="truncate">Add Tenant</span>
+                        </a>
+                </header>
+                <div class="flex flex-col lg:flex-row gap-6">
+                    <!-- Filters Column -->
+                    <aside class="w-full lg:w-80 xl:w-96">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 p-6 sticky top-6">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">
+                                Filters
+                            </h3>
+                    
+                            <div class="space-y-6">
+                                <!-- Property Filter -->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                        Filter by Property
+                                    </label>
+                                    <select
+                                        class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+                                        <option>All Properties</option>
+                                        <option>Maple Crest Towers</option>
+                                        <option>Oakridge Apartments</option>
+                                        <option>Willow Creek Estates</option>
+                                    </select>
+                                </div>
+                    
+                                <!-- Lease Status Filter -->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                        Filter by Lease Status
+                                    </label>
+                                    <select
+                                        class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+                                        <option>All Statuses</option>
+                                        <option>Active</option>
+                                        <option>Expiring Soon</option>
+                                        <option>Month-to-Month</option>
+                                        <option>Inactive</option>
+                                    </select>
+                                </div>
+                    
+                                <!-- Action Buttons -->
+                                <div class="flex flex-col sm:flex-row lg:flex-col gap-3 pt-4">
+                                    <button
+                                        class="flex-1 py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5">
+                                        Apply Filters
+                                    </button>
+                                    <button
+                                        class="flex-1 py-3 px-6 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-semibold rounded-xl transition">
+                                        Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                    <!-- Tenant List Column -->
+                    <div class="w-full lg:w-3/4 xl:w-4/5">
+                        <!-- SearchBar -->
+                        <div class="mb-4">
+                            <label class="flex flex-col w-full">
+                                <div
+                                    class="relative flex w-full items-center rounded-xl h-14 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 shadow-md focus-within:shadow-lg focus-within:border-blue-500 dark:focus-within:border-blue-400 transition-all duration-200">
+                                    <!-- Search Icon -->
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-5">
+                                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                        </svg>
+                                    </div>
+                            
+                                    <!-- Input Field -->
+                                    <input type="text"
+                                        class="w-full h-full pl-12 pr-5 bg-transparent text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 text-base focus:outline-none focus:ring-0"
+                                        placeholder="Search by property name or address..." value="" />
+                                </div>
+                            </label>
+                        </div>
+                        <!-- Tenant Cards -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                            <!-- Tenant Card 1: Active -->
+                            <div
+                                class="bg-white dark:bg-gray-800 rounded-xl border border-border-light dark:border-border-dark p-4 flex flex-col gap-4 hover:shadow-lg hover:border-primary/50 dark:hover:border-primary/50 transition-shadow">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                        data-alt="Profile picture of Olivia Chen"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDftD61AoFd8PAeQsmF7knX3Mi_es6XoFrI-ure8DnnMWpoXt3K0cA1E8K7IJ90-fpzwl0DTeV6mmNX9ncCgAgySyRNlF8ysOacQL3i9-G5WeegH128xRZAr2ySzLwSXNNhP4KkKvRxLhE3rAfE3gC_N0PImSOBteRfqkbZ9NAcsV7rDQXCFfZBo9JnGe33k-Fj5nYV4CxKeLUqoOxgj04L2jW2sqC91ybGBSNXJ080LEqpvB9N_0fOb8dfGoIGdFvgW6f4TPE7rOo");'>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <a href="../../pages/tenants/tenantprofile.html"
+                                            class="text-text-primary dark:text-white text-base font-bold leading-normal hover:text-primary/80 dark:hover:text-primary/80 transition-colors">
+                                            Olivia Chen
+                                        </a>
+                                        <p
+                                            class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal">
+                                            Maple Crest - Unit 402</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span
+                                        class="inline-flex items-center rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success dark:bg-success/20 dark:text-green-300">Active</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-start gap-4 pt-2 border-t border-border-light dark:border-border-dark">
+                                    <button
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">call</span></button>
+                                    <a href="../../pages/tenants/inappmessage.html"
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">sms</span></a>
+                                    <a href="../../pages/tenants/emailcommunications.html"
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">chat</span></a>
+                                </div>
+                            </div>
+                            <!-- Tenant Card 2: Expiring Soon -->
+                            <div
+                                class="bg-white dark:bg-gray-800 rounded-xl border border-border-light dark:border-border-dark p-4 flex flex-col gap-4 hover:shadow-lg hover:border-primary/50 dark:hover:border-primary/50 transition-shadow">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                        data-alt="Profile picture of Benjamin Carter"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDYz0B1FYNjTvwbkoRE86G-4FxLoJ-b8viVUJtvLYbdkzyxBtmb1cOnsjgRBA63QTt2M501j_bXhPskbPkkMLKJmXWHJUsU-JkKe9QXj3VSRaVKOMbMcqGqN8sSHP8ECRxv5HUGVJFd1KeQH9kLgU-L8vZ8Uiam9bctyU8h6DuiRqfF4bvatO1qHf9UyXyfk6awCBCC9IEmL3IQ4mugp9ppKqug5sJ3Vs51XOIlfsMBVR6hVrVuVFEjUYHMwfQH0ON65Adch2_zt-c");'>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <a href="../../pages/tenants/tenantprofile.html"
+                                            class="text-text-primary dark:text-white text-base font-bold leading-normal hover:text-primary/80 dark:hover:text-primary/80 transition-colors">
+                                            Benjamin Carter</a>
+                                        <p
+                                            class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal">
+                                            Oakridge Apts - Unit 11B</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span
+                                        class="inline-flex items-center rounded-full bg-warning/10 px-3 py-1 text-xs font-medium text-warning dark:bg-warning/20 dark:text-yellow-300">Expiring
+                                        Soon</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-start gap-4 pt-2 border-t border-border-light dark:border-border-dark">
+                                    <button
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">call</span></button>
+                                    <a href="../../pages/tenants/inappmessage.html"
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">sms</span></a>
+                                    <a href="../../pages/tenants/emailcommunications.html"
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">chat</span></a>
+                                </div>
+                            </div>
+                            <!-- Tenant Card 3: Month-to-Month -->
+                            <div
+                                class="bg-white dark:bg-gray-800 rounded-xl border border-border-light dark:border-border-dark p-4 flex flex-col gap-4 hover:shadow-lg hover:border-primary/50 dark:hover:border-primary/50 transition-shadow">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                        data-alt="Profile picture of Aisha Khan"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEi4Q1YVvWN66o_aCYfChd4tWN8QhooEHQsM8vN4iv7G_CaCrYaDKSrmA1mC9Tve0bKnvaDPqHEDyktEqWaPNu_SFhc_DJbJOjigOYIHNS19bH9OYlpfIZf93eK5eY-u7s-DxBCSX69o9nbfqgOq05bKkeUymCmnq5Hgf9hzlu-NB0fNOSLkhFZ2Cut7HA1RZLRo7qnQVvrLPOG1OiFKBgkBrPW7FO4SNR5ZhzS4Au2B3U6Zl0ZbzrnyDDEqzfWIJJHyoXL_f-bd8");'>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <a href="../../pages/tenants/tenantprofile.html"
+                                            class="text-text-primary dark:text-white text-base font-bold leading-normal hover:text-primary/80 dark:hover:text-primary/80 transition-colors">
+                                            Aisha Khan</a>
+                                        <p
+                                            class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal">
+                                            Willow Creek - Unit 205</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span
+                                        class="inline-flex items-center rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent dark:bg-accent/20 dark:text-orange-300">Month-to-Month</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-start gap-4 pt-2 border-t border-border-light dark:border-border-dark">
+                                    <button
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">call</span></button>
+                                    <a href="../../pages/tenants/inappmessage.html"
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">sms</span></a>
+                                    <a href="../../pages/tenants/emailcommunications.html"
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">chat</span></a>
+                                </div>
+                            </div>
+                            <!-- More Tenant Cards... -->
+                            <div
+                                class="bg-white dark:bg-gray-800 rounded-xl border border-border-light dark:border-border-dark p-4 flex flex-col gap-4 hover:shadow-lg hover:border-primary/50 dark:hover:border-primary/50 transition-shadow">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                        data-alt="Profile picture of Liam O'Connell"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDYz0B1FYNjTvwbkoRE86G-4FxLoJ-b8viVUJtvLYbdkzyxBtmb1cOnsjgRBA63QTt2M501j_bXhPskbPkkMLKJmXWHJUsU-JkKe9QXj3VSRaVKOMbMcqGqN8sSHP8ECRxv5HUGVJFd1KeQH9kLgU-L8vZ8Uiam9bctyU8h6DuiRqfF4bvatO1qHf9UyXyfk6awCBCC9IEmL3IQ4mugp9ppKqug5sJ3Vs51XOIlfsMBVR6hVrVuVFEjUYHMwfQH0ON65Adch2_zt-c");'>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <a href="../../pages/tenants/tenantprofile.html"
+                                            class="text-text-primary dark:text-white text-base font-bold leading-normal hover:text-primary/80 dark:hover:text-primary/80 transition-colors">
+                                            Liam O'Connell</a>
+                                        <p
+                                            class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal">
+                                            Maple Crest - Unit 810</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span
+                                        class="inline-flex items-center rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success dark:bg-success/20 dark:text-green-300">Active</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-start gap-4 pt-2 border-t border-border-light dark:border-border-dark">
+                                    <button
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">call</span></button>
+                                    <a href="../../pages/tenants/inappmessage.html"
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">sms</span></a>
+                                    <a href="../../pages/tenants/emailcommunications.html"
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">chat</span></a>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-white dark:bg-gray-800 rounded-xl border border-border-light dark:border-border-dark p-4 flex flex-col gap-4 hover:shadow-lg hover:border-primary/50 dark:hover:border-primary/50 transition-shadow">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                        data-alt="Profile picture of Sofia Rossi"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB1k3rGOzpGz4NhMUM1KdarxdeEQcgi8S0tdAsUQ2XHf-BAW3wOoHERuh1AQBny8s41vxN14m2zc4f-5Hc92HeOBBPCPzXxW5HSrWFKaqTd_aXZ4I8X8ElQTe3pMWhDDaQsUUjxgkNPMFQ63ymdU717EauIHDMp6mwKMP7W76usK6VsmecLpwxhURLyn_4QjzDkfLJMx94hwH2kKxiCodaHOvEHkmvkbGSa7Ml5nsYv-oBMz2R3yWz46BQno0lCVtHfzWavUSHm8Mo");'>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <a href="../../pages/tenants/tenantprofile.html"
+                                            class="text-text-primary dark:text-white text-base font-bold leading-normal hover:text-primary/80 dark:hover:text-primary/80 transition-colors">
+                                            Sofia Rossi</a>
+                                        <p
+                                            class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal">
+                                            Oakridge Apts - Unit 3A</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span
+                                        class="inline-flex items-center rounded-full bg-success/10 px-3 py-1 text-xs font-medium text-success dark:bg-success/20 dark:text-green-300">Active</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-start gap-4 pt-2 border-t border-border-light dark:border-border-dark">
+                                    <button
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">call</span></button>
+                                    <a href="../../pages/tenants/inappmessage.html"
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">sms</span></a>
+                                    <a href="../../pages/tenants/emailcommunications.html"
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">chat</span></a>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-white dark:bg-gray-800 rounded-xl border border-border-light dark:border-border-dark p-4 flex flex-col gap-4 hover:shadow-lg hover:border-primary/50 dark:hover:border-primary/50 transition-shadow">
+                                <div class="flex items-center gap-3">
+                                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                        data-alt="Profile picture of Noah Kim"
+                                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAuHQG4c6y_TCwdJa2JH_5_G7hzxyifneCujuXy9diBSWVTuO7wmKUGzk4TeRJ0LE_eSN8wbizBNmrX2iBLNEg2NBeGp6Swf2aJ5of-ytovgCBRxB_gVhEKJ8YYelWePrbhSoyK6ANt3hnAyeE-XQ2rruAnb7GOR0SWcexzdXYa9zMvVg3XwZ8HnnZkhHv2BW3WIDAHoTgTcV3UfW8G3-HHxRFXvwaHkGOq_nsLgzyr3QGLzvWcvXn-jDyfrtMwRQoscHmMTF--2lw");'>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <a href="../../pages/tenants/tenantprofile.html"
+                                            class="text-text-primary dark:text-white text-base font-bold leading-normal hover:text-primary/80 dark:hover:text-primary/80 transition-colors">
+                                            Noah Kim</a>
+                                        <p
+                                            class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal">
+                                            Maple Crest - Unit 501</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span
+                                        class="inline-flex items-center rounded-full bg-gray-200 dark:bg-gray-600 px-3 py-1 text-xs font-medium text-text-secondary dark:text-gray-300">Inactive</span>
+                                </div>
+                                <div
+                                    class="flex items-center justify-start gap-4 pt-2 border-t border-border-light dark:border-border-dark">
+                                    <button
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">call</span></button>
+                                    <a href="../../pages/tenants/inappmessage.html"
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">sms</span></a>
+                                    <a href="../../pages/tenants/emailcommunications.html"
+                                        class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary"><span
+                                            class="material-symbols-outlined">chat</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pagination -->
+                        <div class="flex items-center justify-between mt-6 px-2">
+                            <p class="text-sm text-text-secondary dark:text-gray-400">
+                                Showing <span class="font-medium text-text-primary dark:text-white">1</span> to <span
+                                    class="font-medium text-text-primary dark:text-white">6</span> of <span
+                                    class="font-medium text-text-primary dark:text-white">24</span> results
+                            </p>
+                            <div class="flex items-center gap-2">
+                                <button
+                                    class="flex items-center justify-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50"
+                                    disabled="">
+                                    <span
+                                        class="material-symbols-outlined text-text-secondary dark:text-gray-400">chevron_left</span>
+                                </button>
+                                <button
+                                    class="flex items-center justify-center size-8 rounded-lg text-sm font-bold bg-primary text-white">1</button>
+                                <button
+                                    class="flex items-center justify-center size-8 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700">2</button>
+                                <button
+                                    class="flex items-center justify-center size-8 rounded-lg text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700">3</button>
+                                <button
+                                    class="flex items-center justify-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <span
+                                        class="material-symbols-outlined text-text-secondary dark:text-gray-400">chevron_right</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

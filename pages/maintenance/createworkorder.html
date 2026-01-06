@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Create Work Order - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <!-- <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                        data-alt="John Doe's profile picture"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAAml88zcYHfxfLTBYcAo8ypoV3WGOB6NZQaqy77o05UAxGnyXEQTYb6WGUHhvoEWlC5GMJDLd3QLdNaASimjEk-q8ts5jhaAC2Xw3GoVw_22ETLbG6z4YwXNVWrH7JNKifKBe_SnB4jNp-GyLdb8SW7g5TRsV0tRaM1-3W-x7lxn9syJ7puB1UFReSaM6-dSYLR5gnPGnH2IGOhPy7vdPfVdrkhi8Tc9OPzXKzZA5QopAChEOWAa0k7w5RCK3xpNINMNrz1g2yU5E");'>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-text-primary dark:text-white text-base font-medium leading-normal">John Doe</h1>
+                        <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal">Property
+                            Manager</p>
+                    </div> -->
+
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-primary">dashboard</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">groups</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg" 
+                   href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg" 
+                   href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="mx-auto max-w-4xl">
+                <!-- Breadcrumbs -->
+                <div class="mb-6 flex flex-wrap items-center gap-2">
+                    <a class="text-text-secondary dark:text-gray-400 text-base font-medium leading-normal hover:text-primary dark:hover:text-primary/80"
+                        href="#">Work Orders</a>
+                    <span class="text-text-secondary dark:text-gray-400 text-base font-medium leading-normal">/</span>
+                    <span class="text-text-primary dark:text-white text-base font-medium leading-normal">Create New Work
+                        Order</span>
+                </div>
+                <!-- Page Heading -->
+                <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
+                    <h1 class="text-text-primary dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
+                        Create New Work Order</h1>
+                </div>
+                <!-- Form Container -->
+                <div
+                    class="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 sm:p-8 shadow-sm">
+                    <form class="space-y-8">
+                        <div class="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-2">
+                            <!-- Property & Unit -->
+                            <div>
+                                <label class="mb-2 block text-base font-medium text-text-primary dark:text-white/90"
+                                    for="property-unit">Property &amp; Unit</label>
+                                <select
+                                    class="form-select w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-3.5 text-base text-text-primary dark:text-white placeholder:text-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 dark:focus:border-primary"
+                                    id="property-unit">
+                                    <option value="">Search and select a property or unit</option>
+                                    <option value="prop1">123 Main St, Unit 4B</option>
+                                    <option value="prop2">456 Oak Ave, Suite 201</option>
+                                    <option value="prop3">789 Pine Ln, Commercial Unit</option>
+                                </select>
+                            </div>
+                            <!-- Category of Issue -->
+                            <div>
+                                <label class="mb-2 block text-base font-medium text-text-primary dark:text-white/90"
+                                    for="issue-category">Category of Issue</label>
+                                <select
+                                    class="form-select w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-3.5 text-base text-text-primary dark:text-white placeholder:text-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 dark:focus:border-primary"
+                                    id="issue-category">
+                                    <option value="">Select a category</option>
+                                    <option value="plumbing">Plumbing</option>
+                                    <option value="electrical">Electrical</option>
+                                    <option value="hvac">HVAC</option>
+                                    <option value="appliance">Appliance</option>
+                                    <option value="pest">Pest Control</option>
+                                    <option value="general">General Maintenance</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Priority Level -->
+                        <div>
+                            <h2 class="mb-3 text-base font-medium text-text-primary dark:text-white/90">Priority Level
+                            </h2>
+                            <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                                <label
+                                    class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-300 dark:border-gray-600 p-3.5 text-center text-sm font-semibold has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:text-primary dark:has-[:checked]:border-primary dark:has-[:checked]:bg-primary/20">
+                                    <input class="sr-only" name="priority" type="radio" value="low" /> Low
+                                </label>
+                                <label
+                                    class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-300 dark:border-gray-600 p-3.5 text-center text-sm font-semibold has-[:checked]:border-secondary has-[:checked]:bg-secondary/10 has-[:checked]:text-secondary dark:has-[:checked]:border-secondary dark:has-[:checked]:bg-secondary/20">
+                                    <input checked="" class="sr-only" name="priority" type="radio" value="medium" />
+                                    Medium
+                                </label>
+                                <label
+                                    class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-300 dark:border-gray-600 p-3.5 text-center text-sm font-semibold has-[:checked]:border-warning has-[:checked]:bg-warning/10 has-[:checked]:text-warning dark:has-[:checked]:border-warning dark:has-[:checked]:bg-warning/20">
+                                    <input class="sr-only" name="priority" type="radio" value="high" /> High
+                                </label>
+                                <label
+                                    class="flex cursor-pointer items-center justify-center rounded-lg border border-gray-300 dark:border-gray-600 p-3.5 text-center text-sm font-semibold has-[:checked]:border-error has-[:checked]:bg-error/10 has-[:checked]:text-error dark:has-[:checked]:border-error dark:has-[:checked]:bg-error/20">
+                                    <input class="sr-only" name="priority" type="radio" value="urgent" /> Urgent
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Detailed Description -->
+                        <div>
+                            <label class="mb-2 block text-base font-medium text-text-primary dark:text-white/90"
+                                for="description">Detailed Description</label>
+                            <textarea
+                                class="form-textarea w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-3.5 text-base text-text-primary dark:text-white placeholder:text-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 dark:focus:border-primary"
+                                id="description"
+                                placeholder="Please provide as much detail as possible about the issue..."
+                                rows="5"></textarea>
+                        </div>
+                        <!-- File Upload -->
+                        <div>
+                            <label class="mb-2 block text-base font-medium text-text-primary dark:text-white/90">Attach
+                                Photos or Documents</label>
+                            <div class="flex w-full items-center justify-center">
+                                <label
+                                    class="flex h-48 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600 hover:bg-gray-100"
+                                    for="dropzone-file">
+                                    <div class="flex flex-col items-center justify-center pb-6 pt-5">
+                                        <span
+                                            class="material-symbols-outlined text-4xl text-text-secondary dark:text-gray-400">cloud_upload</span>
+                                        <p class="mb-2 text-sm text-text-secondary dark:text-gray-400"><span
+                                                class="font-semibold">Click to upload</span> or drag and drop</p>
+                                        <p class="text-xs text-text-secondary dark:text-gray-400">PNG, JPG, GIF or PDF
+                                            (MAX. 10MB)</p>
+                                    </div>
+                                    <input class="sr-only" id="dropzone-file" multiple="" type="file" />
+                                </label>
+                            </div>
+                            <div class="mt-4 space-y-3">
+                                <!-- Example of uploaded file -->
+                                <div
+                                    class="flex items-center justify-between rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50 p-3">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-secondary">image</span>
+                                        <span
+                                            class="text-sm font-medium text-text-primary dark:text-white/90">kitchen-leak.jpg</span>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-sm text-text-secondary dark:text-gray-400">2.4MB</span>
+                                        <button
+                                            class="text-text-secondary hover:text-error dark:text-gray-400 dark:hover:text-error"
+                                            type="button">
+                                            <span class="material-symbols-outlined text-xl">delete</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-2">
+                            <!-- Preferred Completion Date -->
+                            <div>
+                                <label class="mb-2 block text-base font-medium text-text-primary dark:text-white/90"
+                                    for="completion-date">Preferred Completion Date</label>
+                                <div class="relative">
+                                    <input
+                                        class="form-input w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-3.5 text-base text-text-primary dark:text-white placeholder:text-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 dark:focus:border-primary"
+                                        id="completion-date" type="date" />
+                                </div>
+                            </div>
+                            <!-- Assign To -->
+                            <div>
+                                <label class="mb-2 block text-base font-medium text-text-primary dark:text-white/90"
+                                    for="assign-to">Assign To (Vendor/Staff)</label>
+                                <select
+                                    class="form-select w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 p-3.5 text-base text-text-primary dark:text-white placeholder:text-text-secondary focus:border-primary focus:ring-2 focus:ring-primary/20 dark:focus:border-primary"
+                                    id="assign-to">
+                                    <option value="">Select a vendor or staff member</option>
+                                    <option value="vendor1">ABC Plumbing</option>
+                                    <option value="staff1">John Doe (Maintenance)</option>
+                                    <option value="vendor2">Sparky's Electrical</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Notify Tenant -->
+                        <div>
+                            <div
+                                class="flex items-center justify-between rounded-lg border border-gray-200 dark:border-gray-700 p-4">
+                                <div>
+                                    <h3 class="font-medium text-text-primary dark:text-white/90">Notify Tenant</h3>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">Send an email and SMS
+                                        notification to the tenant about this work order.</p>
+                                </div>
+                                <label class="relative inline-flex cursor-pointer items-center"
+                                    for="tenant-notification">
+                                    <input class="peer sr-only" id="tenant-notification" type="checkbox" />
+                                    <div
+                                        class="peer h-6 w-11 rounded-full bg-gray-200 dark:bg-gray-600 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-primary peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/30 dark:border-gray-500 dark:peer-focus:ring-primary/80">
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Action Buttons -->
+                        <div
+                            class="flex items-center justify-end gap-4 border-t border-gray-200 dark:border-gray-700 pt-6">
+                            <button
+                                class="rounded-lg px-5 py-3 text-base font-semibold text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                type="button">Cancel</button>
+                            <button
+                                class="rounded-lg bg-primary px-5 py-3 text-base font-semibold text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                                type="submit">Submit Work Order</button>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-text-secondary dark:text-gray-500">Information is handled in
+                                accordance with Canadian federal and provincial privacy regulations. <a
+                                    class="text-primary/80 underline hover:text-primary" href="#">Learn more</a>.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

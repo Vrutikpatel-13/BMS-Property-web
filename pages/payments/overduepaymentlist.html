@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Overdue Payments - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">groups</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10"
+                        href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-primary">payments</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="max-w-7xl mx-auto">
+                <!-- PageHeading -->
+                <header class="flex flex-wrap justify-between items-center gap-4 mb-6">
+                    <h1
+                        class="text-text-primary dark:text-text-primary-dark text-4xl font-black leading-tight tracking-[-0.033em]">
+                        Overdue Payments</h1>
+                </header>
+                <!-- Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div
+                        class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-background-dark border border-border-light dark:border-border-dark">
+                        <p class="text-text-primary dark:text-text-primary-dark text-base font-medium leading-normal">
+                            Total Overdue Amount</p>
+                        <p
+                            class="text-text-primary dark:text-text-primary-dark tracking-tight text-3xl font-bold leading-tight">
+                            $45,780.00</p>
+                    </div>
+                    <div
+                        class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-background-dark border border-border-light dark:border-border-dark">
+                        <p class="text-text-primary dark:text-text-primary-dark text-base font-medium leading-normal">
+                            Tenants Overdue</p>
+                        <p
+                            class="text-text-primary dark:text-text-primary-dark tracking-tight text-3xl font-bold leading-tight">
+                            18</p>
+                    </div>
+                </div>
+                <!-- ToolBar -->
+                <div
+                    class="mb-6 p-4 bg-white dark:bg-background-dark rounded-xl border border-border-light dark:border-border-dark">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary dark:text-text-secondary-dark">search</span>
+                            <input
+                                class="w-full pl-10 pr-4 py-2 border border-border-light dark:border-border-dark rounded-lg bg-transparent text-text-primary dark:text-text-primary-dark focus:ring-primary focus:border-primary"
+                                placeholder="Search by Tenant/Unit..." type="text" />
+                        </div>
+                        <select
+                            class="w-full px-4 py-2 border border-border-light dark:border-border-dark rounded-lg bg-transparent text-text-primary dark:text-text-primary-dark focus:ring-primary focus:border-primary">
+                            <option>Filter by Property: All</option>
+                            <option>The Grandview</option>
+                            <option>Oakwood Apartments</option>
+                        </select>
+                        <select
+                            class="w-full px-4 py-2 border border-border-light dark:border-border-dark rounded-lg bg-transparent text-text-primary dark:text-text-primary-dark focus:ring-primary focus:border-primary">
+                            <option>Sort by: Days Overdue (High to Low)</option>
+                            <option>Amount Owed (High to Low)</option>
+                            <option>Tenant Name (A-Z)</option>
+                        </select>
+                        <button
+                            class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg h-10 hover:bg-primary/90">
+                            Apply Filters
+                        </button>
+                    </div>
+                </div>
+                <!-- ListItems -->
+                <div class="space-y-4">
+                    <!-- List Item 1 -->
+                    <div
+                        class="flex flex-col md:flex-row items-center gap-4 bg-white dark:bg-background-dark px-6 py-4 rounded-xl border border-border-light dark:border-border-dark justify-between">
+                        <div class="flex items-center gap-4 w-full md:w-auto">
+                            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-16 w-16"
+                                data-alt="Photo of Olivia Chen"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCSGkztQ5gHqPYf47_8JcrOrgeNqkcOgsWaUm5RusxeYu2UhYpHbc2VeOV-_1UQ5bziT-YzRMAmDhEvKlBmyAj0jwHecIfAJH4Yd_Y6ej4QeFQIZeHOD-MUtz7AP_9euNacgP9U-YPUIfVFnmgwLbeMp1uZbuhC_3iowIXgSFTpmbujKps9L6V7XWz9y0m2e2rdgA5OEjP4vnOEVXJm2ndfzt_wYyVOVhzjxUOdknzsX5fzNlspkmPXkq090U00QZNKLGF_yKdLWB4");'>
+                            </div>
+                            <div class="flex-1">
+                                <p
+                                    class="text-text-primary dark:text-text-primary-dark text-base font-bold leading-normal">
+                                    Olivia Chen</p>
+                                <p
+                                    class="text-text-secondary dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                                    Unit 402</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6 w-full md:w-auto">
+                            <div class="flex flex-col items-start md:items-center">
+                                <span class="text-sm text-text-secondary dark:text-text-secondary-dark">Days
+                                    Overdue</span>
+                                <div
+                                    class="inline-flex items-center justify-center px-3 py-1 text-sm font-bold text-white bg-error rounded-full">
+                                    32 Days</div>
+                            </div>
+                            <div class="flex flex-col items-start md:items-center">
+                                <span class="text-sm text-text-secondary dark:text-text-secondary-dark">Amount
+                                    Owed</span>
+                                <p class="text-lg font-bold text-text-primary dark:text-text-primary-dark">$1,250.00</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 w-full md:w-auto shrink-0">
+                            <button
+                                class="flex-1 md:flex-none flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
+                                <span class="truncate">Send Reminder</span>
+                            </button>
+                            <button
+                                class="flex-1 md:flex-none flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-text-secondary dark:text-text-secondary-dark border border-border-light dark:border-border-dark hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-bold leading-normal tracking-[0.015em]">
+                                <span class="truncate">Call Tenant</span>
+                            </button>
+                            <button
+                                class="p-2 text-text-secondary dark:text-text-secondary-dark rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span class="material-symbols-outlined">more_vert</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- List Item 2 -->
+                    <div
+                        class="flex flex-col md:flex-row items-center gap-4 bg-white dark:bg-background-dark px-6 py-4 rounded-xl border border-border-light dark:border-border-dark justify-between">
+                        <div class="flex items-center gap-4 w-full md:w-auto">
+                            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-16 w-16"
+                                data-alt="Photo of Benjamin Carter"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB-WOvzqf8t5cKEMOmULZ42j0-Uz2B4Sgpd-zIEvyM-KZXmHG0L6_6ak7hodKKWnsobQ2K_aYyX7ofCnOo00_RcYgnRswCMqquMD_lK-tXG9DxkVP1nr37esyvTLGlhokQ1TumB3pA52fCj_CB_xhI5aOK1FGjEs9VPw_J2bGW6QFl4ox7VULoIHusnSxDvPwp60IVzSZnNfAl6hLw7AOKOi6obk25REZdAKt3caRky86sFFYqo7QVj2vdA9BkDJpgrtC3QYL-gCxY");'>
+                            </div>
+                            <div class="flex-1">
+                                <p
+                                    class="text-text-primary dark:text-text-primary-dark text-base font-bold leading-normal">
+                                    Benjamin Carter</p>
+                                <p
+                                    class="text-text-secondary dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                                    Unit 110</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6 w-full md:w-auto">
+                            <div class="flex flex-col items-start md:items-center">
+                                <span class="text-sm text-text-secondary dark:text-text-secondary-dark">Days
+                                    Overdue</span>
+                                <div
+                                    class="inline-flex items-center justify-center px-3 py-1 text-sm font-bold text-white bg-error rounded-full">
+                                    25 Days</div>
+                            </div>
+                            <div class="flex flex-col items-start md:items-center">
+                                <span class="text-sm text-text-secondary dark:text-text-secondary-dark">Amount
+                                    Owed</span>
+                                <p class="text-lg font-bold text-text-primary dark:text-text-primary-dark">$875.50</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 w-full md:w-auto shrink-0">
+                            <button
+                                class="flex-1 md:flex-none flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
+                                <span class="truncate">Send Reminder</span>
+                            </button>
+                            <button
+                                class="flex-1 md:flex-none flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-text-secondary dark:text-text-secondary-dark border border-border-light dark:border-border-dark hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-bold leading-normal tracking-[0.015em]">
+                                <span class="truncate">Call Tenant</span>
+                            </button>
+                            <button
+                                class="p-2 text-text-secondary dark:text-text-secondary-dark rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span class="material-symbols-outlined">more_vert</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- List Item 3 -->
+                    <div
+                        class="flex flex-col md:flex-row items-center gap-4 bg-white dark:bg-background-dark px-6 py-4 rounded-xl border border-border-light dark:border-border-dark justify-between">
+                        <div class="flex items-center gap-4 w-full md:w-auto">
+                            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-16 w-16"
+                                data-alt="Photo of Chloe Garcia"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBiTOs6_NCq2dFb0eim8zlQMIPYaHVLe3wwbjzjyxne9quabP0euPzchh1ZaYXKkV6i7aQ2CzlB406LCJCEpKftXMaOx8KnAyE39OYbh1K60a03Pgy3Xs09-DlbVplVD3T_vx5V5o9NiSojZnn7jbLr_cUAtD3Rf6LeAdqoxleCpgOETlsjEIBwg7J2IVoOO_qaf47wj3OOBjidh6jb06xBifCSYrkaiCc2KbWeK7gQriVcMokT8R9BV0Q-XGMgz12V-dF8kDq-qBk");'>
+                            </div>
+                            <div class="flex-1">
+                                <p
+                                    class="text-text-primary dark:text-text-primary-dark text-base font-bold leading-normal">
+                                    Chloe Garcia</p>
+                                <p
+                                    class="text-text-secondary dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                                    Unit 205</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6 w-full md:w-auto">
+                            <div class="flex flex-col items-start md:items-center">
+                                <span class="text-sm text-text-secondary dark:text-text-secondary-dark">Days
+                                    Overdue</span>
+                                <div
+                                    class="inline-flex items-center justify-center px-3 py-1 text-sm font-bold text-white bg-warning rounded-full">
+                                    12 Days</div>
+                            </div>
+                            <div class="flex flex-col items-start md:items-center">
+                                <span class="text-sm text-text-secondary dark:text-text-secondary-dark">Amount
+                                    Owed</span>
+                                <p class="text-lg font-bold text-text-primary dark:text-text-primary-dark">$2,100.00</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 w-full md:w-auto shrink-0">
+                            <button
+                                class="flex-1 md:flex-none flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90">
+                                <span class="truncate">Send Reminder</span>
+                            </button>
+                            <button
+                                class="flex-1 md:flex-none flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-text-secondary dark:text-text-secondary-dark border border-border-light dark:border-border-dark hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-bold leading-normal tracking-[0.015em]">
+                                <span class="truncate">Call Tenant</span>
+                            </button>
+                            <button
+                                class="p-2 text-text-secondary dark:text-text-secondary-dark rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span class="material-symbols-outlined">more_vert</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <div class="flex justify-end mt-8">
+                    <nav aria-label="Pagination" class="flex items-center gap-2">
+                        <a class="inline-flex items-center justify-center size-9 rounded-lg text-text-secondary dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-gray-700"
+                            href="#">
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </a>
+                        <a class="inline-flex items-center justify-center size-9 rounded-lg text-white bg-primary font-bold"
+                            href="#">1</a>
+                        <a class="inline-flex items-center justify-center size-9 rounded-lg text-text-secondary dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-gray-700"
+                            href="#">2</a>
+                        <a class="inline-flex items-center justify-center size-9 rounded-lg text-text-secondary dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-gray-700"
+                            href="#">3</a>
+                        <span
+                            class="inline-flex items-center justify-center size-9 text-text-secondary dark:text-text-secondary-dark">...</span>
+                        <a class="inline-flex items-center justify-center size-9 rounded-lg text-text-secondary dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-gray-700"
+                            href="#">8</a>
+                        <a class="inline-flex items-center justify-center size-9 rounded-lg text-text-secondary dark:text-text-secondary-dark hover:bg-gray-100 dark:hover:bg-gray-700"
+                            href="#">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

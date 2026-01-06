@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tenant Profile - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10"
+                        href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-primary">groups</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="max-w-7xl mx-auto">
+                <!-- Header -->
+                <header>
+                    <!-- Breadcrumbs -->
+                    <div class="flex flex-wrap gap-2 items-center text-sm">
+                        <a class="text-text-secondary hover:text-primary" href="#">Properties</a>
+                        <span class="material-symbols-outlined text-text-secondary text-base">chevron_right</span>
+                        <a class="text-text-secondary hover:text-primary" href="#">The Grand Dominion</a>
+                        <span class="material-symbols-outlined text-text-secondary text-base">chevron_right</span>
+                        <a class="text-text-secondary hover:text-primary" href="#">Tenants</a>
+                        <span class="material-symbols-outlined text-text-secondary text-base">chevron_right</span>
+                        <span class="text-text-primary dark:text-white font-medium">John Appleseed</span>
+                    </div>
+                    <!-- PageHeading & Main Actions -->
+                    <div class="flex flex-wrap justify-between items-center gap-4 mt-4">
+                        <h1 class="text-text-primary dark:text-white text-3xl font-bold tracking-tight">Tenant Profile
+                        </h1>
+                        <div class="flex flex-1 gap-3 flex-wrap justify-start sm:flex-initial sm:justify-end">
+                            <a href="../../../../pages/properties/leaserenewal.html" class="flex min-w-[84px] items-center justify-center overflow-hidden rounded-lg
+         h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide
+         hover:bg-primary/90 transition">
+                                <span class="truncate">Initiate Renewal</span>
+                            </a>
+                            <button
+                                class="flex min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-gray-200 dark:bg-gray-700 text-text-primary dark:text-gray-200 text-sm font-bold leading-normal tracking-wide hover:bg-gray-300 dark:hover:bg-gray-600">
+                                <span class="truncate">Send Notice</span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+                <!-- Profile Header Card -->
+                <div class="mt-8 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-sm @container">
+                    <div
+                        class="flex w-full flex-col gap-6 @[520px]:flex-row @[520px]:justify-between @[520px]:items-center">
+                        <div class="flex gap-4 items-center">
+                            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-24 w-24 flex-shrink-0"
+                                data-alt="Profile picture of John Appleseed"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCQyYnxrM01n6xm9FpbzR2A24QSypQVMByqutCCJH-ui7a68iNEuEHJ6_ZiIjMFcI2RhPr-LxGwf-RIrAUH88Yj1egeonwzu0I0twCkbT7JcxdluDMU_VkvyXnnHPiedVt4JJHWKd0lQNoSnxBZ5tGmwtbDr0kEntWSa4wiAkDIlXjeZweE3u0t4J7QQ64yxzBt9UHZgh7HMROyWJLctJMsckC5exzmZMPf5LPEs7IwseP2230oGphiBzY7aDHrJm9s05V83utEAtM");'>
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <p class="text-text-primary dark:text-white text-2xl font-bold">John Appleseed</p>
+                                <p class="text-text-secondary text-base font-normal mt-1">john.appleseed@email.com •
+                                    (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="flex w-full max-w-[480px] gap-3 @[480px]:w-auto">
+                            <button
+                                class="flex min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-gray-200 dark:bg-gray-700 text-text-primary dark:text-gray-200 text-sm font-bold leading-normal tracking-wide flex-1 @[480px]:flex-auto hover:bg-gray-300 dark:hover:bg-gray-600">
+                                <span class="truncate">Call</span>
+                            </button>
+                            <button
+                                class="flex min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-secondary text-white text-sm font-bold leading-normal tracking-wide flex-1 @[480px]:flex-auto hover:bg-secondary/90">
+                                <span class="truncate">Message Tenant</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Information Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+                    <!-- Left Column -->
+                    <div class="lg:col-span-2 flex flex-col gap-6">
+                        <!-- Lease & Rent Details -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Lease Details Card -->
+                            <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-bold text-text-primary dark:text-white">Lease Details</h3>
+                                <div class="mt-4 space-y-3 text-text-secondary">
+                                    <div class="flex justify-between items-center"><span>Property</span> <span
+                                            class="font-medium text-text-primary dark:text-gray-200">The Grand
+                                            Dominion</span></div>
+                                    <div class="flex justify-between items-center"><span>Unit</span> <span
+                                            class="font-medium text-text-primary dark:text-gray-200">#1402</span></div>
+                                    <div class="flex justify-between items-center"><span>Lease Start</span> <span
+                                            class="font-medium text-text-primary dark:text-gray-200">Aug 1, 2023</span>
+                                    </div>
+                                    <div class="flex justify-between items-center"><span>Lease End</span> <span
+                                            class="font-medium text-text-primary dark:text-gray-200">Jul 31, 2024</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                                    <p class="text-sm text-text-secondary">Lease expires in <span
+                                            class="font-bold text-accent">82 days</span></p>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-2">
+                                        <div class="bg-accent h-2 rounded-full" style="width: 77%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Rent Status Card -->
+                            <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm">
+                                <h3 class="text-lg font-bold text-text-primary dark:text-white">Rent Status</h3>
+                                <div class="mt-4">
+                                    <p class="text-sm text-text-secondary">Monthly Rent</p>
+                                    <p class="text-3xl font-bold text-text-primary dark:text-white mt-1">$2,450.00 CAD
+                                    </p>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                                    <p class="text-sm text-text-secondary">May 2024 Payment</p>
+                                    <div
+                                        class="inline-flex items-center gap-2 mt-2 px-3 py-1 text-sm font-medium rounded-full bg-success/10 text-success">
+                                        <span class="w-2 h-2 rounded-full bg-success"></span>
+                                        Paid on May 1, 2024
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Documents Panel -->
+                        <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm">
+                            <h3 class="text-lg font-bold text-text-primary dark:text-white">Documents</h3>
+                            <ul class="mt-4 space-y-3">
+                                <li
+                                    class="flex justify-between items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">description</span>
+                                        <span
+                                            class="text-sm font-medium text-text-primary dark:text-gray-200">LeaseAgreement_2023.pdf</span>
+                                    </div>
+                                    <a class="text-primary text-sm font-bold hover:underline" href="#">Download</a>
+                                </li>
+                                <li
+                                    class="flex justify-between items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">description</span>
+                                        <span
+                                            class="text-sm font-medium text-text-primary dark:text-gray-200">ParkingAddendum_A1.pdf</span>
+                                    </div>
+                                    <a class="text-primary text-sm font-bold hover:underline" href="#">Download</a>
+                                </li>
+                                <li
+                                    class="flex justify-between items-center p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary">description</span>
+                                        <span
+                                            class="text-sm font-medium text-text-primary dark:text-gray-200">PetPolicy_Agreement.pdf</span>
+                                    </div>
+                                    <a class="text-primary text-sm font-bold hover:underline" href="#">Download</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Right Column -->
+                    <div class="flex flex-col gap-6">
+                        <!-- Emergency Contact Panel -->
+                        <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm">
+                            <h3 class="text-lg font-bold text-text-primary dark:text-white">Emergency Contact</h3>
+                            <div class="mt-4 space-y-3 text-text-secondary">
+                                <div class="flex justify-between items-center"><span>Name</span> <span
+                                        class="font-medium text-text-primary dark:text-gray-200">Sarah Appleseed</span>
+                                </div>
+                                <div class="flex justify-between items-center"><span>Relationship</span> <span
+                                        class="font-medium text-text-primary dark:text-gray-200">Spouse</span></div>
+                                <div class="flex justify-between items-center"><span>Phone</span> <span
+                                        class="font-medium text-text-primary dark:text-gray-200">(555) 987-6543</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Vehicle Information -->
+                        <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm">
+                            <h3 class="text-lg font-bold text-text-primary dark:text-white">Vehicle Information</h3>
+                            <div class="mt-4 space-y-3 text-text-secondary">
+                                <div class="flex justify-between items-center"><span>Make/Model</span> <span
+                                        class="font-medium text-text-primary dark:text-gray-200">Honda Civic</span>
+                                </div>
+                                <div class="flex justify-between items-center"><span>Color</span> <span
+                                        class="font-medium text-text-primary dark:text-gray-200">Blue</span></div>
+                                <div class="flex justify-between items-center"><span>License Plate</span> <span
+                                        class="font-medium text-text-primary dark:text-gray-200">CMYK-123</span></div>
+                            </div>
+                        </div>
+                        <!-- Pet Information -->
+                        <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-sm">
+                            <h3 class="text-lg font-bold text-text-primary dark:text-white">Pet Information</h3>
+                            <div class="mt-4 space-y-3 text-text-secondary">
+                                <div class="flex justify-between items-center"><span>Type</span> <span
+                                        class="font-medium text-text-primary dark:text-gray-200">Dog</span></div>
+                                <div class="flex justify-between items-center"><span>Breed</span> <span
+                                        class="font-medium text-text-primary dark:text-gray-200">Golden Retriever</span>
+                                </div>
+                                <div class="flex justify-between items-center"><span>Name</span> <span
+                                        class="font-medium text-text-primary dark:text-gray-200">Buddy</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

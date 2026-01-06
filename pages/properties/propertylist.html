@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Properties - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10" 
+                       href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-primary">apartment</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">groups</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg" 
+                   href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg" 
+                   href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="flex-1 p-8 overflow-y-auto hello-first">
+            <div class="max-w-7xl mx-auto">
+                <!-- PageHeading -->
+                <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+                    <h1 class="text-text-primary dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
+                        Properties
+                    </h1>
+                    <button
+                        class="flex min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+                        <span class="material-symbols-outlined mr-2 text-lg">add</span>
+                        <span class="truncate">Add New Property</span>
+                    </button>
+                </div>
+                <!-- Search and Filter Bar -->
+                <div class="flex flex-col md:flex-row gap-4 mb-6">
+                    <!-- SearchBar -->
+                    <div class="flex-grow">
+                        <label class="flex flex-col w-full">
+                            <div
+                                class="relative flex w-full items-center rounded-xl h-12 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 shadow-md focus-within:shadow-lg focus-within:border-blue-500 dark:focus-within:border-blue-400 transition-all duration-200">
+                                <!-- Search Icon -->
+                                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-5">
+                                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                    </svg>
+                                </div>
+                    
+                                <!-- Input Field -->
+                                <input type="text"
+                                    class="w-full h-full pl-12 pr-5 bg-transparent text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 text-base focus:outline-none focus:ring-0"
+                                    placeholder="Search by property name or address..." value="" />
+                            </div>
+                        </label>
+                    </div>
+                    <!-- Chips/Filters -->
+                    <div class="flex items-center gap-3 overflow-x-auto pb-2">
+                        <button
+                            class="flex h-12 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm px-4 hover:bg-gray-50 dark:hover:bg-gray-700">
+                            <p class="text-text-primary dark:text-white text-sm font-medium leading-normal">City</p>
+                            <span
+                                class="material-symbols-outlined text-text-secondary dark:text-gray-400 text-base">expand_more</span>
+                        </button>
+                        <button
+                            class="flex h-12 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm px-4 hover:bg-gray-50 dark:hover:bg-gray-700">
+                            <p class="text-text-primary dark:text-white text-sm font-medium leading-normal">Property
+                                Type</p>
+                            <span
+                                class="material-symbols-outlined text-text-secondary dark:text-gray-400 text-base">expand_more</span>
+                        </button>
+                        <button
+                            class="flex h-12 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm px-4 hover:bg-gray-50 dark:hover:bg-gray-700">
+                            <p class="text-text-primary dark:text-white text-sm font-medium leading-normal">Occupancy
+                            </p>
+                            <span
+                                class="material-symbols-outlined text-text-secondary dark:text-gray-400 text-base">expand_more</span>
+                        </button>
+                        <button
+                            class="flex h-12 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm px-4 text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary">
+                            <span class="material-symbols-outlined text-base">refresh</span>
+                            <p class="text-sm font-medium leading-normal">Reset</p>
+                        </button>
+                    </div>
+                </div>
+                <!-- Property Cards Grid -->
+                <div class="grid grid-cols-1 @container md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div
+                        class="flex flex-col rounded-xl shadow-md bg-white dark:bg-gray-800 overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover"
+                            data-alt="Exterior of a modern apartment building in Toronto"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAZay08TTifdgw8O883i9hSNJvL8iVFZ89Ghx4Zb9lPftiQrlsXzqapikoizIW8jVsKZQdYPXWcF7YbxwSJLX7T72EIpk-7NRjCp5gntBZ45LhHob9KAA3BOyPVsXVNot9ukvA0DLEw9RidFEgMte9XJ0vD_9C_w0K6Apv4YJD1nWTreu5KGutd8Dahg4DByAHavxa6_YMjEeZ0HYfgSpTnTLP5-17yFzdGR5NtQMZjRhz148ZfkBx_UxJG5PqloGfNUZZ4ZsAtK28");'>
+                        </div>
+                        <div class="flex flex-col p-4 flex-grow">
+                            <h3
+                                class="text-text-primary dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+                                123 Maple
+                                Street, Toronto, ON</h3>
+                            <div class="grid grid-cols-3 gap-4 mt-4 mb-6 text-center">
+                                <div>
+                                    <p
+                                        class="text-text-secondary dark:text-gray-400 text-xs font-medium uppercase tracking-wider">
+                                        UNITS</p>
+                                    <p class="text-text-primary dark:text-white text-lg font-bold">50</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-text-secondary dark:text-gray-400 text-xs font-medium uppercase tracking-wider">
+                                        OCCUPANCY
+                                    </p>
+                                    <p class="text-secondary text-lg font-bold">96%</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-text-secondary dark:text-gray-400 text-xs font-medium uppercase tracking-wider">
+                                        VACANT</p>
+                                    <p class="text-text-primary dark:text-white text-lg font-bold">2</p>
+                                </div>
+                            </div>
+                            <a href="../../../../pages/properties/propertydetails.html"
+                                class="mt-auto w-full flex items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal hover:bg-primary/90 transition-colors">
+                                <span class="truncate">View Details</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div
+                        class="flex flex-col rounded-xl shadow-md bg-white dark:bg-gray-800 overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover"
+                            data-alt="Suburban family house in Vancouver"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAjy07pIq1uPDdyWBKXirG2Y04VEBxHAQ9S1EtV36ayGMvxSwyJxey94aNP3WCHJUV65fNO3zG08qwVJEMMrISGuBcNpl8IgIey93cf_uJX4JA2UIZz-eCtMPefZNfm6J3q8k6LdZEv0R7u0pJoXEU5ZMbM9NDy4zoPTSx7ZNFGwnCW8Z08voJVRzA-ux5WviC7-T7D8uLwRSkgvoNi5_7xUINsEVPcagmM9Wr42caczErPMIefBlTI_AQBKxTE7gDnIT9ebiLc-0Q");'>
+                        </div>
+                        <div class="flex flex-col p-4 flex-grow">
+                            <h3
+                                class="text-text-primary dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+                                456 Oak
+                                Avenue, Vancouver, BC</h3>
+                            <div class="grid grid-cols-3 gap-4 mt-4 mb-6 text-center">
+                                <div>
+                                    <p
+                                        class="text-text-secondary dark:text-gray-400 text-xs font-medium uppercase tracking-wider">
+                                        UNITS</p>
+                                    <p class="text-text-primary dark:text-white text-lg font-bold">12</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-text-secondary dark:text-gray-400 text-xs font-medium uppercase tracking-wider">
+                                        OCCUPANCY
+                                    </p>
+                                    <p class="text-secondary text-lg font-bold">100%</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-text-secondary dark:text-gray-400 text-xs font-medium uppercase tracking-wider">
+                                        VACANT</p>
+                                    <p class="text-text-primary dark:text-white text-lg font-bold">0</p>
+                                </div>
+                            </div>
+                            <a href="../../../../pages/properties/propertydetails.html"
+                                class="mt-auto w-full flex items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal hover:bg-primary/90 transition-colors">
+                                <span class="truncate">View Details</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div
+                        class="flex flex-col rounded-xl shadow-md bg-white dark:bg-gray-800 overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover"
+                            data-alt="Downtown high-rise building in Montreal"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAaQ0kqPsgSlTMU14xVkD-RQi5DMHef3SxSDE282cK_f9SgR1e_3hEdqBgdwcY9EoIH743dpZoSU1_meJCq-1ANdJTU5sZLG4SBZcWPJzoPGL0F41JrOqfmNNo-mAF97FUfV_APyJLv5RpaaZ-DB8tfk6XvqymdmJC33DmVzIvhkVPYT2cWb9CTbhyCeimcZOBQ5Qs6JdmfcytEOHquElApMEr0634r6A9C6xEKpkFld-XfKOpBgxmfbDgDrrRTigImo-EpxsdVgz8");'>
+                        </div>
+                        <div class="flex flex-col p-4 flex-grow">
+                            <h3
+                                class="text-text-primary dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+                                789 Rue
+                                Pine, Montreal, QC</h3>
+                            <div class="grid grid-cols-3 gap-4 mt-4 mb-6 text-center">
+                                <div>
+                                    <p
+                                        class="text-text-secondary dark:text-gray-400 text-xs font-medium uppercase tracking-wider">
+                                        UNITS</p>
+                                    <p class="text-text-primary dark:text-white text-lg font-bold">120</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-text-secondary dark:text-gray-400 text-xs font-medium uppercase tracking-wider">
+                                        OCCUPANCY
+                                    </p>
+                                    <p class="text-warning text-lg font-bold">85%</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-text-secondary dark:text-gray-400 text-xs font-medium uppercase tracking-wider">
+                                        VACANT</p>
+                                    <p class="text-text-primary dark:text-white text-lg font-bold">18</p>
+                                </div>
+                            </div>
+                            <a href="../../../../pages/properties/propertydetails.html"
+                                class="mt-auto w-full flex items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal hover:bg-primary/90 transition-colors">
+                                <span class="truncate">View Details</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div
+                        class="flex flex-col rounded-xl shadow-md bg-white dark:bg-gray-800 overflow-hidden transition-all hover:shadow-xl hover:-translate-y-1">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover"
+                            data-alt="Modern residential complex in Calgary"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDBG0cVMsa7QiYaSH9pYcyUizBRgOrTMSsl3q02BR9xD-7g1mtFK_kIiTHU7f8FWAccC_ItlZ9Pm_16fSwfzdT_7PVjDSfb1Qpgi3Wh-2H0YTJD0T1_JvZenjiJd0p4A-KJnO6YEMsPa8MoSAvIardR1DQmRBmIsbLVFizAnVrs6FsaqXHvGVxAqjQLF2SAUuVrwRH0f1cF8sw9oaHhb28I_zIqydOtSjmVldE58_McnCwAPvra14-CnJcb96nbniLP6hOTH_wG8fk");'>
+                        </div>
+                        <div class="flex flex-col p-4 flex-grow">
+                            <h3
+                                class="text-text-primary dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+                                101 Birch
+                                Crescent, Calgary, AB</h3>
+                            <div class="grid grid-cols-3 gap-4 mt-4 mb-6 text-center">
+                                <div>
+                                    <p
+                                        class="text-text-secondary dark:text-gray-400 text-xs font-medium uppercase tracking-wider">
+                                        UNITS</p>
+                                    <p class="text-text-primary dark:text-white text-lg font-bold">75</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-text-secondary dark:text-gray-400 text-xs font-medium uppercase tracking-wider">
+                                        OCCUPANCY
+                                    </p>
+                                    <p class="text-secondary text-lg font-bold">99%</p>
+                                </div>
+                                <div>
+                                    <p
+                                        class="text-text-secondary dark:text-gray-400 text-xs font-medium uppercase tracking-wider">
+                                        VACANT</p>
+                                    <p class="text-text-primary dark:text-white text-lg font-bold">1</p>
+                                </div>
+                            </div>
+                            <a href="../../../../pages/properties/propertydetails.html"
+                                class="mt-auto w-full flex items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal hover:bg-primary/90 transition-colors">
+                                <span class="truncate">View Details</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- Main Content -->
+       
+    </div>
+</body>
+</html>

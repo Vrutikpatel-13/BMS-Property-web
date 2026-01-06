@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Email Communications - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties
+                        </p>
+                    </a>
+
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10"
+                        href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-primary">groups</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/notificationpreferences.html">
+                        <span
+                            class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications
+                        </p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1">
+            <div class="px-4 py-8 md:px-8 lg:px-12">
+                <!-- Page Heading -->
+                <div class="flex flex-wrap justify-between gap-3 pb-6">
+                    <h1
+                        class="text-text-primary-light dark:text-text-primary-dark text-4xl font-black leading-tight tracking-[-0.033em]">
+                        Email Communications</h1>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Left Panel: Templates -->
+                    <div class="lg:col-span-1 flex flex-col gap-6">
+                        <div
+                            class="flex flex-col gap-4 bg-panel-light dark:bg-panel-dark p-4 rounded-xl border border-border-light dark:border-border-dark">
+                            <!-- SearchBar -->
+                            <div>
+                                <label class="flex flex-col min-w-40 h-12 w-full">
+                                    <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+                                        <div
+                                            class="text-text-secondary-light dark:text-text-secondary-dark flex bg-background-light dark:bg-background-dark items-center justify-center pl-4 rounded-l-lg border-y border-l border-border-light dark:border-border-dark">
+                                            <span class="material-symbols-outlined">search</span>
+                                        </div>
+                                        <input
+                                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-text-primary-light dark:text-text-primary-dark focus:outline-0 focus:ring-2 focus:ring-primary/50 border-y border-r border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark h-full placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark px-4 pl-2 text-base font-normal leading-normal"
+                                            placeholder="Search templates..." value="" />
+                                    </div>
+                                </label>
+                            </div>
+                            <!-- Template List -->
+                            <div class="flex flex-col divide-y divide-border-light dark:divide-border-dark">
+                                <div
+                                    class="flex items-center gap-4 bg-primary/10 px-4 min-h-[72px] py-2 justify-between cursor-pointer border-l-4 border-primary">
+                                    <div class="flex items-center gap-4">
+                                        <div
+                                            class="text-primary flex items-center justify-center rounded-lg bg-primary/20 shrink-0 size-12">
+                                            <span class="material-symbols-outlined">receipt_long</span>
+                                        </div>
+                                        <div class="flex flex-col justify-center">
+                                            <p class="text-primary text-base font-medium leading-normal line-clamp-1">
+                                                Rent Reminder</p>
+                                            <p
+                                                class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal line-clamp-2">
+                                                A friendly reminder about upcoming rent.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 hover:bg-primary/5 px-4 min-h-[72px] py-2 justify-between cursor-pointer transition-colors">
+                                    <div class="flex items-center gap-4">
+                                        <div
+                                            class="text-text-primary-light dark:text-text-primary-dark flex items-center justify-center rounded-lg bg-background-light dark:bg-background-dark shrink-0 size-12">
+                                            <span class="material-symbols-outlined">construction</span>
+                                        </div>
+                                        <div class="flex flex-col justify-center">
+                                            <p
+                                                class="text-text-primary-light dark:text-text-primary-dark text-base font-medium leading-normal line-clamp-1">
+                                                Building Maintenance Notice</p>
+                                            <p
+                                                class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal line-clamp-2">
+                                                Notify tenants about scheduled maintenance.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 hover:bg-primary/5 px-4 min-h-[72px] py-2 justify-between cursor-pointer transition-colors">
+                                    <div class="flex items-center gap-4">
+                                        <div
+                                            class="text-text-primary-light dark:text-text-primary-dark flex items-center justify-center rounded-lg bg-background-light dark:bg-background-dark shrink-0 size-12">
+                                            <span class="material-symbols-outlined">celebration</span>
+                                        </div>
+                                        <div class="flex flex-col justify-center">
+                                            <p
+                                                class="text-text-primary-light dark:text-text-primary-dark text-base font-medium leading-normal line-clamp-1">
+                                                Community Event</p>
+                                            <p
+                                                class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal line-clamp-2">
+                                                Announce an upcoming community event.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex items-center gap-4 hover:bg-primary/5 px-4 min-h-[72px] py-2 justify-between cursor-pointer transition-colors">
+                                    <div class="flex items-center gap-4">
+                                        <div
+                                            class="text-text-primary-light dark:text-text-primary-dark flex items-center justify-center rounded-lg bg-background-light dark:bg-background-dark shrink-0 size-12">
+                                            <span class="material-symbols-outlined">gavel</span>
+                                        </div>
+                                        <div class="flex flex-col justify-center">
+                                            <p
+                                                class="text-text-primary-light dark:text-text-primary-dark text-base font-medium leading-normal line-clamp-1">
+                                                Policy Update</p>
+                                            <p
+                                                class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal line-clamp-2">
+                                                Inform residents about a policy change.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                class="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-primary border border-primary rounded-lg hover:bg-primary/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50">
+                                <span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+                                Create New Template
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Right Panel: Composer -->
+                    <div
+                        class="lg:col-span-2 flex flex-col gap-6 bg-panel-light dark:bg-panel-dark p-6 rounded-xl border border-border-light dark:border-border-dark">
+                        <div class="flex flex-col gap-4">
+                            <!-- Recipient Selector -->
+                            <div>
+                                <label
+                                    class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1"
+                                    for="recipients">To:</label>
+                                <div
+                                    class="relative flex flex-wrap items-center gap-2 p-2 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 bg-primary/20 text-primary text-sm font-medium px-2 py-1 rounded">All
+                                        Properties <button class="text-primary/70 hover:text-primary"><span
+                                                class="material-symbols-outlined"
+                                                style="font-size: 16px;">close</span></button></span>
+                                    <span
+                                        class="inline-flex items-center gap-1.5 bg-primary/20 text-primary text-sm font-medium px-2 py-1 rounded">Building
+                                        A: Floor 3 <button class="text-primary/70 hover:text-primary"><span
+                                                class="material-symbols-outlined"
+                                                style="font-size: 16px;">close</span></button></span>
+                                    <input
+                                        class="flex-1 min-w-40 bg-transparent focus:outline-none text-text-primary-light dark:text-text-primary-dark placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark"
+                                        id="recipients" placeholder="Select properties, floors, or units..."
+                                        type="text" />
+                                </div>
+                            </div>
+                            <!-- Subject Line -->
+                            <div>
+                                <label
+                                    class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1"
+                                    for="subject">Subject:</label>
+                                <input
+                                    class="w-full rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-primary-light dark:text-text-primary-dark focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                                    id="subject" type="text" value="Important: Upcoming Rent Payment" />
+                            </div>
+                            <!-- Message Body -->
+                            <div>
+                                <label
+                                    class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1">Message:</label>
+                                <div
+                                    class="rounded-lg border border-border-light dark:border-border-dark overflow-hidden">
+                                    <div
+                                        class="flex items-center gap-2 p-2 bg-background-light dark:bg-background-dark border-b border-border-light dark:border-border-dark">
+                                        <button
+                                            class="p-1 rounded hover:bg-primary/10 text-text-secondary-light dark:text-text-secondary-dark"><span
+                                                class="material-symbols-outlined"
+                                                style="font-size: 20px;">format_bold</span></button>
+                                        <button
+                                            class="p-1 rounded hover:bg-primary/10 text-text-secondary-light dark:text-text-secondary-dark"><span
+                                                class="material-symbols-outlined"
+                                                style="font-size: 20px;">format_italic</span></button>
+                                        <button
+                                            class="p-1 rounded hover:bg-primary/10 text-text-secondary-light dark:text-text-secondary-dark"><span
+                                                class="material-symbols-outlined"
+                                                style="font-size: 20px;">format_list_bulleted</span></button>
+                                        <button
+                                            class="p-1 rounded hover:bg-primary/10 text-text-secondary-light dark:text-text-secondary-dark"><span
+                                                class="material-symbols-outlined"
+                                                style="font-size: 20px;">link</span></button>
+                                    </div>
+                                    <textarea
+                                        class="w-full p-3 border-0 bg-panel-light dark:bg-panel-dark text-text-primary-light dark:text-text-primary-dark focus:ring-0 resize-y"
+                                        id="message-body" placeholder="Compose your message..." rows="8">Dear [Tenant Name],
+This is a friendly reminder that your rent for [Month] is due on [Date]. Please ensure your payment is submitted on time to avoid any late fees.
+
+Thank you,
+The Management Team
+                                        </textarea>
+                                </div>
+                            </div>
+                            <!-- Attachment Section -->
+                            <div>
+                                <label
+                                    class="block text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark mb-1">Attachments:</label>
+                                <div class="flex items-center justify-center w-full">
+                                    <label
+                                        class="flex flex-col items-center justify-center w-full h-32 border-2 border-border-light dark:border-border-dark border-dashed rounded-lg cursor-pointer bg-background-light dark:bg-background-dark hover:bg-primary/5"
+                                        for="dropzone-file">
+                                        <div
+                                            class="flex flex-col items-center justify-center pt-5 pb-6 text-text-secondary-light dark:text-text-secondary-dark">
+                                            <span
+                                                class="material-symbols-outlined text-4xl text-text-secondary-light dark:text-text-secondary-dark/70">cloud_upload</span>
+                                            <p class="mb-2 text-sm"><span class="font-semibold">Click to upload</span>
+                                                or drag and drop</p>
+                                            <p class="text-xs">PDF, PNG, JPG or DOC (MAX. 10MB)</p>
+                                        </div>
+                                        <input class="hidden" id="dropzone-file" type="file" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Action Buttons -->
+                        <div
+                            class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-3 pt-4 border-t border-border-light dark:border-border-dark mt-auto">
+                            <button
+                                class="px-4 py-2 text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark rounded-lg hover:bg-primary/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50">Save
+                                as Draft</button>
+                            <button
+                                class="px-4 py-2 text-sm font-medium text-white bg-secondary rounded-lg hover:bg-opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-secondary/50">
+                                <span class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined" style="font-size: 20px;">schedule</span>
+                                    Schedule Send
+                                </span>
+                            </button>
+                            <button
+                                class="px-6 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50">
+                                <span class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined" style="font-size: 20px;">send</span>
+                                    Send Now
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

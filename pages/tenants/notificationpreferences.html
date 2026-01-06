@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Notification Preferences - BMS</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10"
+                        href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-primary">groups</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10"
+                        href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-primary">notifications</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg" 
+                   href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg" 
+                   href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="max-w-4xl mx-auto">
+                <!-- Page Heading -->
+                <div class="flex flex-wrap justify-between gap-3 mb-8">
+                    <div class="flex flex-col gap-2">
+                        <h1 class="text-4xl font-black tracking-[-0.033em] text-text-primary dark:text-white">Notification Preferences</h1>
+                        <p class="text-base font-normal text-text-secondary dark:text-gray-400">
+                            Manage how you receive communications from property management.</p>
+                    </div>
+                </div>
+                <div class="space-y-10">
+                    <!-- Notification Channels Section -->
+                    <section>
+                        <h2 class="text-[22px] font-bold tracking-[-0.015em] pb-4 border-b border-gray-200 dark:border-gray-700 text-text-primary dark:text-white">
+                            Notification Channels</h2>
+                        <div class="mt-6 space-y-6">
+                            <!-- ListItem -->
+                            <div class="flex items-center justify-between gap-4">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="flex items-center justify-center rounded-lg bg-white dark:bg-gray-800 shrink-0 size-12 border border-border-light dark:border-border-dark">
+                                        <span class="material-symbols-outlined">phone_iphone</span>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <p class="text-base font-medium">Push Notifications</p>
+                                        <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                                            For mobile app alerts</p>
+                                    </div>
+                                </div>
+                                <label
+                                    class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                    <input checked="" class="invisible absolute" type="checkbox" />
+                                    <div
+                                        class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-[20px]">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="flex items-center justify-between gap-4">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="flex items-center justify-center rounded-lg bg-white dark:bg-gray-800 shrink-0 size-12 border border-border-light dark:border-border-dark">
+                                        <span class="material-symbols-outlined">mail</span>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <p class="text-base font-medium">Email Notifications</p>
+                                        <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                                            For updates to your inbox</p>
+                                    </div>
+                                </div>
+                                <label
+                                    class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                    <input checked="" class="invisible absolute" type="checkbox" />
+                                    <div
+                                        class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-[20px]">
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="flex items-center justify-between gap-4">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="flex items-center justify-center rounded-lg bg-white dark:bg-gray-800 shrink-0 size-12 border border-border-light dark:border-border-dark">
+                                        <span class="material-symbols-outlined">sms</span>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <p class="text-base font-medium">SMS Notifications</p>
+                                        <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                                            For text message alerts</p>
+                                    </div>
+                                </div>
+                                <label
+                                    class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                    <input class="invisible absolute" type="checkbox" />
+                                    <div
+                                        class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-0">
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Granular Notification Categories Section -->
+                    <section>
+                        <h2 class="text-[22px] font-bold tracking-[-0.015em] pb-4 border-b border-gray-200 dark:border-gray-700 text-text-primary dark:text-white">
+                            Notification Categories</h2>
+                        <div class="mt-6 divide-y divide-gray-200 dark:divide-gray-700">
+                            <!-- Granular Item -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-4 py-5">
+                                <div>
+                                    <p class="font-medium">Rent Reminders</p>
+                                    <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                                        Upcoming payments, overdue notices.</p>
+                                </div>
+                                <div class="grid grid-cols-3 gap-4 items-center justify-items-end">
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input checked="" class="invisible absolute" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-[20px]">
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input checked="" class="invisible absolute" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-[20px]">
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input class="invisible absolute" disabled="" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-0 opacity-50">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-4 py-5">
+                                <div>
+                                    <p class="font-medium">Maintenance Updates</p>
+                                    <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                                        Request status, scheduled visits.</p>
+                                </div>
+                                <div class="grid grid-cols-3 gap-4 items-center justify-items-end">
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input checked="" class="invisible absolute" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-[20px]">
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input checked="" class="invisible absolute" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-[20px]">
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input class="invisible absolute" disabled="" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-0 opacity-50">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-4 py-5">
+                                <div>
+                                    <p class="font-medium">Community Announcements</p>
+                                    <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                                        Building notices, policy changes.</p>
+                                </div>
+                                <div class="grid grid-cols-3 gap-4 items-center justify-items-end">
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input checked="" class="invisible absolute" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-[20px]">
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input checked="" class="invisible absolute" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-[20px]">
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input class="invisible absolute" disabled="" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-0 opacity-50">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-4 py-5">
+                                <div>
+                                    <p class="font-medium">Community Events</p>
+                                    <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                                        Social gatherings, meetings.</p>
+                                </div>
+                                <div class="grid grid-cols-3 gap-4 items-center justify-items-end">
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input checked="" class="invisible absolute" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-[20px]">
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input checked="" class="invisible absolute" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-[20px]">
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input class="invisible absolute" disabled="" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-0 opacity-50">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-4 py-5">
+                                <div>
+                                    <p class="font-medium">Marketing &amp; Promotions</p>
+                                    <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Local
+                                        offers, renewal incentives.</p>
+                                </div>
+                                <div class="grid grid-cols-3 gap-4 items-center justify-items-end">
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input class="invisible absolute" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-0">
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input class="invisible absolute" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-0">
+                                        </div>
+                                    </label>
+                                    <label
+                                        class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-gray-200 dark:bg-gray-700 p-0.5 has-[:checked]:bg-primary">
+                                        <input class="invisible absolute" disabled="" type="checkbox" />
+                                        <div
+                                            class="h-full w-[27px] rounded-full bg-white transition-transform duration-300 ease-in-out transform translate-x-0 opacity-50">
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- Action Bar -->
+                <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700 flex justify-end">
+                    <button class="flex items-center justify-center rounded-lg h-12 bg-primary text-white gap-2 text-base font-bold leading-normal px-6 hover:bg-primary/90 disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

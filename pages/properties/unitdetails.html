@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Unit Details - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10"
+                        href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-primary">apartment</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">groups</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8">
+            <div class="max-w-7xl mx-auto flex flex-col gap-8">
+                <!-- Breadcrumbs -->
+                <div class="flex flex-wrap gap-2">
+                    <a class="text-text-secondary dark:text-gray-400 text-base font-medium leading-normal hover:text-primary"
+                        href="#">Properties</a>
+                    <span class="text-text-secondary dark:text-gray-400 text-base font-medium leading-normal">/</span>
+                    <a class="text-text-secondary dark:text-gray-400 text-base font-medium leading-normal hover:text-primary"
+                        href="#">The Grand</a>
+                    <span class="text-text-secondary dark:text-gray-400 text-base font-medium leading-normal">/</span>
+                    <span class="text-text-primary dark:text-white text-base font-medium leading-normal">Unit 402</span>
+                </div>
+                <!-- Page Heading & Actions -->
+                <div class="flex flex-wrap justify-between items-center gap-4">
+                    <div class="flex min-w-72 flex-col gap-2">
+                        <h1
+                            class="text-text-primary dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
+                            Unit 402 - 123 Maple Street</h1>
+                        <p class="text-text-secondary dark:text-gray-400 text-base font-normal leading-normal">Detailed
+                            view of the unit's information and history.</p>
+                    </div>
+                    <div class="flex flex-1 gap-3 flex-wrap justify-start md:justify-end">
+                        <a href="../../pages/reports/inspectiontype&creation.html"
+                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue-700 dark:hover:bg-blue-500 transition-colors">
+                            <span class="truncate">Schedule Inspection</span>
+                        </a>
+                        <a href="../../../../pages/maintenance/workorder.html"
+                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white dark:bg-gray-700 text-text-primary dark:text-white border border-border-light dark:border-border-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
+                            <span class="truncate">Create Work Order</span>
+                        </a>
+                        <button
+                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-text-primary dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
+                            <span class="truncate">View Documents</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Stats -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div
+                        class="flex flex-col gap-2 rounded-lg p-6 bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark">
+                        <p class="text-text-secondary dark:text-gray-400 text-base font-medium leading-normal">Bedrooms
+                        </p>
+                        <p class="text-text-primary dark:text-white tracking-tight text-3xl font-bold leading-tight">2
+                        </p>
+                    </div>
+                    <div
+                        class="flex flex-col gap-2 rounded-lg p-6 bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark">
+                        <p class="text-text-secondary dark:text-gray-400 text-base font-medium leading-normal">Bathrooms
+                        </p>
+                        <p class="text-text-primary dark:text-white tracking-tight text-3xl font-bold leading-tight">2
+                        </p>
+                    </div>
+                    <div
+                        class="flex flex-col gap-2 rounded-lg p-6 bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark">
+                        <p class="text-text-secondary dark:text-gray-400 text-base font-medium leading-normal">Square
+                            Footage</p>
+                        <p class="text-text-primary dark:text-white tracking-tight text-3xl font-bold leading-tight">950
+                            sqft</p>
+                    </div>
+                    <div
+                        class="flex flex-col gap-2 rounded-lg p-6 bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark">
+                        <p class="text-text-secondary dark:text-gray-400 text-base font-medium leading-normal">Monthly
+                            Rent</p>
+                        <p class="text-text-primary dark:text-white tracking-tight text-3xl font-bold leading-tight">
+                            $2,400</p>
+                    </div>
+                </div>
+                <!-- Unit Details Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Left Column: Tenant and Details -->
+                    <div class="lg:col-span-2 flex flex-col gap-6">
+                        <!-- Tenant Information Card -->
+                        <div
+                            class="bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-lg p-6">
+                            <h2 class="text-xl font-bold text-text-primary dark:text-white mb-4">Current Tenant</h2>
+                            <div class="flex items-center gap-4">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16"
+                                    data-alt="Photo of tenant Jane Doe"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAE3WjrXNchypJPCMdZi09pdDEgpjAA2TzE5QselOxd7KMUMx35u325mISvl7iIstNZvq8o_7isWW04l9kz5JNzxdmKfB8h7PDeXqjNzhR9zaDx8AThKK2WujAjFC6ANS377S2bWH45vY83R5DPJejXfVr_3Qbqxg9F0ljdE2wvh4mJw95TRpDjFZ2R7qRULmSe6rZZ5fjBrZDPzifevTONT4tZQMEFw_IQU1P581W46pYV-lXHnQntkqI_LRZxDoecBequnzcmyJY");'>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-lg font-semibold text-text-primary dark:text-white">Jane Doe</p>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">Lease: Jan 1, 2023 - Dec
+                                        31, 2024</p>
+                                </div>
+                                <span
+                                    class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-success/20 text-green-800 dark:bg-success/30 dark:text-green-300">Active</span>
+                            </div>
+                        </div>
+                        <!-- Unit Details Tabs -->
+                        <div
+                            class="bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-lg">
+                            <div class="p-6">
+                                <h2 class="text-xl font-bold text-text-primary dark:text-white">Unit Details</h2>
+                            </div>
+                            <div class="border-b border-border-light dark:border-border-dark px-6">
+                                <nav class="-mb-px flex space-x-6">
+                                    <a class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-primary border-primary"
+                                        href="#">History</a>
+                                    <a class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-text-secondary dark:text-gray-400 border-transparent hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500"
+                                        href="#">Features &amp; Appliances</a>
+                                </nav>
+                            </div>
+                            <div class="p-6">
+                                <p class="text-sm font-medium text-text-secondary dark:text-gray-400 mb-2">Last
+                                    Inspection Date: <span class="text-text-primary dark:text-white font-semibold">June
+                                        15, 2024</span></p>
+                                <h3 class="font-semibold text-text-primary dark:text-white mb-4">Maintenance History
+                                </h3>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start gap-4">
+                                        <div class="bg-success/20 dark:bg-success/30 p-2 rounded-full"><span
+                                                class="material-symbols-outlined text-success">done</span></div>
+                                        <div>
+                                            <p class="font-medium text-text-primary dark:text-white">Leaky Faucet Repair
+                                            </p>
+                                            <p class="text-sm text-text-secondary dark:text-gray-400">May 20, 2024 -
+                                                <span class="font-semibold">Completed</span></p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="bg-success/20 dark:bg-success/30 p-2 rounded-full"><span
+                                                class="material-symbols-outlined text-success">done</span></div>
+                                        <div>
+                                            <p class="font-medium text-text-primary dark:text-white">Annual HVAC Check
+                                            </p>
+                                            <p class="text-sm text-text-secondary dark:text-gray-400">Feb 10, 2024 -
+                                                <span class="font-semibold">Completed</span></p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="bg-error/20 dark:bg-error/30 p-2 rounded-full"><span
+                                                class="material-symbols-outlined text-error">close</span></div>
+                                        <div>
+                                            <p class="font-medium text-text-primary dark:text-white">Smoke Detector
+                                                Battery Replacement</p>
+                                            <p class="text-sm text-text-secondary dark:text-gray-400">Jan 5, 2024 -
+                                                <span class="font-semibold text-error">Reported, Not Fixed</span></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Column: Photos and Floorplan -->
+                    <div class="lg:col-span-1 flex flex-col gap-6">
+                        <div
+                            class="bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark rounded-lg p-6">
+                            <h2 class="text-xl font-bold text-text-primary dark:text-white mb-4">Photos &amp; Floor Plan
+                            </h2>
+                            <div class="mb-4">
+                                <img class="w-full h-48 object-cover rounded-lg"
+                                    data-alt="Interior of a modern living room with a couch and large windows"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsVPDtBMqyYThyDzaLxHujtO2hB_CmNN81ygxbQEvm3I0oypBeWwRAvmmQXq3GFr3UJIDU5ZIus-w5E0ham4S1iOxtnzQMDyafmB5BCxDYh272iS3TPXHGTUJN3nGOsK5XDRaw5rKJNL4JDUrLrMCYyncZEfFtE4yLIs3TNrZgSlZMm5F-12bD7dwQJmwcOn2ExlhzWyAPKjy759u4hPBNF0UBzmwlTtJ_UytkeAuLh0XrDtwmaBiYDAqixOGE6Nt6qSKXhx39kVs" />
+                            </div>
+                            <div class="grid grid-cols-3 gap-2 mb-4">
+                                <img class="w-full h-20 object-cover rounded"
+                                    data-alt="A modern kitchen with white cabinets"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAycc9kQTIIhs-c4pM2u1jYq18qHJd1e6-UMF9m7bZplI2XgRE_FUWlbTmP4VZym2nX2Ld8kC4yV-vsvEWWSipMEdtleMiI7nu7g-GUiGkdpQh-3RWZpqRlxH8pT1_lFmL27-X6zlqqCUo8GXUzVk6kOt6dkYk_lCjok6v9i-nO3PWHRHayot53d9w4gyKn_ThdQWBVj9nDcO9_P9kefY-0vfj6-TytUA_Cc1bOeFPi3i5D5kuvaY7Q6PPThqnye4j2_6bhaHXDIP0" />
+                                <img class="w-full h-20 object-cover rounded" data-alt="A clean, modern bedroom"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWcv0dYmASogcuSvMSOQx3oBdwYHZ2OfMD0sBNz3xXOGnG0XyVVdMkAheLDdRfKX4LZqu4-QPxEGPVKakw5QIiwMnwhuhtgkllgUQ1Yr4d_giv_MIZSh9Lmkh5p70l06IOjKkrUQTBxj5CedL6dfFIiXYhh9CC_wQ96Ht_qffkFBWuZxID5EFHzHG_Fejc5CdpWhXBAj3btxJkRABEnAwBeBfQLmKvOHaIX7HLmtzdeEtST5ZJEdc2VVhQ2qIWwrRbpb2uU-Ydzpw" />
+                                <img class="w-full h-20 object-cover rounded"
+                                    data-alt="A bathroom with a walk-in shower"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHVdSiziPebRPid_riLIOYBj_YKbF4aTTWQbbl5WOfTJ8rtlbLBaU2_4XETpfzniB0aqpdleSn2qHGH63n7N8wpwL-uwv01KtqSebKyXX6uRqpgdO9s_kKuo_3YM-0BsRP117I3CgX4NypBuNTkOdczpggB4WRv1wJvRKH7lEO56Xe1c382Dbr7MEAStjNZOKT3kh8mFrWp-L-YXfXahbrPAOulZvyyLRPnE9G3etNKoth5BMQe6_DFfOLOogo1uiBFuvDllInVoo" />
+                            </div>
+                            <div>
+                                <img class="w-full h-auto rounded-lg border border-border-light dark:border-border-dark"
+                                    data-alt="A 2D floor plan of the unit"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAij51y3dWuFUs_64ix3t-w01W-1jW_7_pY0UGcOO9gopHlPwkH7Db76ksWroQPLKwIuGO2Dr4B8pExdxVj2TO4n38Av1c6f3-HFzvBs5DP5C0Eu9JBYNdc4UXnWN0kZYHlxcTzlme7U4cMfVSpALB7Ffkn3-vs7IibVULvK6iYXePxb8_T9AUSnR1S3h8VYViLFNPu1LmN-t24UNL5WWRxwVKPVl0ZxDsD_TVPfYPcrd6oQek9ado4nbploCYGJwM3OUjPJ6hWGr8" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <!-- <main class="flex-1 p-8 overflow-y-auto">
+            <div class="max-w-7xl mx-auto">
+               
+                <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+                    <h1 class="text-text-primary dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Unit Details</h1>
+                    <button class="flex min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+                        <span class="material-symbols-outlined mr-2 text-lg">edit</span>
+                        <span class="truncate">Edit Unit</span>
+                    </button>
+                </div>
+                
+               
+                <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 mb-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h2 class="text-2xl font-bold text-text-primary dark:text-white mb-2">Unit 101</h2>
+                            <p class="text-lg text-text-secondary dark:text-gray-400">The Birchwood - 123 Maple St</p>
+                        </div>
+                        <span class="px-3 py-1 text-sm font-medium rounded-full bg-success/20 text-success">Occupied</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div>
+                            <h3 class="text-sm font-semibold text-text-secondary dark:text-gray-400 mb-2">Unit Info</h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-text-primary dark:text-white">Type:</span>
+                                    <span class="text-text-primary dark:text-white font-medium">2 Bed, 2 Bath</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-primary dark:text-white">Size:</span>
+                                    <span class="text-text-primary dark:text-white font-medium">1,200 sq ft</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-primary dark:text-white">Floor:</span>
+                                    <span class="text-text-primary dark:text-white font-medium">1st Floor</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-sm font-semibold text-text-secondary dark:text-gray-400 mb-2">Financial</h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-text-primary dark:text-white">Monthly Rent:</span>
+                                    <span class="text-text-primary dark:text-white font-medium">$2,500</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-primary dark:text-white">Security Deposit:</span>
+                                    <span class="text-text-primary dark:text-white font-medium">$2,500</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-primary dark:text-white">Last Payment:</span>
+                                    <span class="text-text-primary dark:text-white font-medium">Dec 1, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-sm font-semibold text-text-secondary dark:text-gray-400 mb-2">Lease Info</h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-text-primary dark:text-white">Start Date:</span>
+                                    <span class="text-text-primary dark:text-white font-medium">Jan 1, 2024</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-primary dark:text-white">End Date:</span>
+                                    <span class="text-text-primary dark:text-white font-medium">Dec 31, 2024</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-primary dark:text-white">Duration:</span>
+                                    <span class="text-text-primary dark:text-white font-medium">12 months</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-sm font-semibold text-text-secondary dark:text-gray-400 mb-2">Status</h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-text-primary dark:text-white">Condition:</span>
+                                    <span class="text-text-primary dark:text-white font-medium text-success">Excellent</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-primary dark:text-white">Last Inspection:</span>
+                                    <span class="text-text-primary dark:text-white font-medium">Nov 15, 2024</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-text-primary dark:text-white">Maintenance:</span>
+                                    <span class="text-text-primary dark:text-white font-medium">Up to date</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-text-primary dark:text-white mb-4">Current Tenant</h3>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" 
+                             data-alt="John Smith's profile picture" 
+                             style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC3az5cEi4wV_-fWlgQNYCuDHKh_KyS4I8NoBTCICLLVmgzmIoS5CrYTARsvqAa10dkb8No4sAN-jm1Csz6v4qaIyeVZ646zOSCQIeC7xXXXtEqMjOgHpVBsipOx2TMqw2HK3EHf4WD8nMBp60yaJHqsZQicDDx7l2ByVs9GlOjUZCSElC2ZwnJ9fBKAy_kYiMDwrrScBD_7jgysyMY94fVJDFeryEEgngnI_2xwZ001ZQR9bIV2Qg2CFNGurmURYgssx0P5h-hGPQ");'>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-medium text-text-primary dark:text-white">John Smith</h4>
+                            <p class="text-sm text-text-secondary dark:text-gray-400">john.smith@email.com | (416) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <span class="text-sm text-text-secondary dark:text-gray-400">Move-in Date:</span>
+                            <p class="text-text-primary dark:text-white font-medium">January 1, 2024</p>
+                        </div>
+                        <div>
+                            <span class="text-sm text-text-secondary dark:text-gray-400">Payment History:</span>
+                            <p class="text-text-primary dark:text-white font-medium text-success">Always on time</p>
+                        </div>
+                        <div>
+                            <span class="text-sm text-text-secondary dark:text-gray-400">Complaints:</span>
+                            <p class="text-text-primary dark:text-white font-medium">0 complaints</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+                    <h3 class="text-lg font-semibold text-text-primary dark:text-white mb-4">Maintenance History</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-success mt-1">check_circle</span>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-text-primary dark:text-white">Regular maintenance completed</p>
+                                <p class="text-xs text-text-secondary dark:text-gray-400">Nov 15, 2024 - HVAC system serviced</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-success mt-1">check_circle</span>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-text-primary dark:text-white">Plumbing repair</p>
+                                <p class="text-xs text-text-secondary dark:text-gray-400">Oct 20, 2024 - Fixed kitchen sink leak</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-success mt-1">check_circle</span>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-text-primary dark:text-white">Appliance replacement</p>
+                                <p class="text-xs text-text-secondary dark:text-gray-400">Aug 5, 2024 - Microwave replaced</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main> -->
+    </div>
+</body>
+
+</html>

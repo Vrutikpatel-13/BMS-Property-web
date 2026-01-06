@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Work Order Details - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <!-- <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                        data-alt="John Doe's profile picture"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAAml88zcYHfxfLTBYcAo8ypoV3WGOB6NZQaqy77o05UAxGnyXEQTYb6WGUHhvoEWlC5GMJDLd3QLdNaASimjEk-q8ts5jhaAC2Xw3GoVw_22ETLbG6z4YwXNVWrH7JNKifKBe_SnB4jNp-GyLdb8SW7g5TRsV0tRaM1-3W-x7lxn9syJ7puB1UFReSaM6-dSYLR5gnPGnH2IGOhPy7vdPfVdrkhi8Tc9OPzXKzZA5QopAChEOWAa0k7w5RCK3xpNINMNrz1g2yU5E");'>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-text-primary dark:text-white text-base font-medium leading-normal">John Doe</h1>
+                        <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal">Property
+                            Manager</p>
+                    </div> -->
+
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-primary">dashboard</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">groups</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg" 
+                   href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg" 
+                   href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 px-4 py-8 md:px-8 lg:px-12 xl:px-20">
+            <div class="layout-content-container mx-auto flex max-w-7xl flex-col gap-8">
+                <!-- Header Section -->
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <p
+                            class="text-text-primary dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
+                            Work Order #WO-12345</p>
+                        <p class="text-text-secondary dark:text-gray-400 text-base font-normal leading-normal mt-2">
+                            Created on: Oct 26, 2023</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 px-4">
+                            <p class="text-primary text-sm font-medium leading-normal">Status: In Progress</p>
+                        </div>
+                        <div
+                            class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-warning/20 px-4">
+                            <p class="text-warning text-sm font-medium leading-normal">Priority: High</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Main Content Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Left Column -->
+                    <div class="lg:col-span-2 flex flex-col gap-8">
+                        <!-- Property & Issue Details Card -->
+                        <div
+                            class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-700">
+                            <h2
+                                class="text-text-primary dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] px-6 pt-5 pb-3 border-b border-gray-200 dark:border-gray-700">
+                                Property &amp; Issue Details</h2>
+                            <div class="p-6">
+                                <div class="flex flex-col gap-6">
+                                    <div class="flex items-center gap-4">
+                                        <div
+                                            class="text-text-secondary dark:text-gray-400 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0 size-12">
+                                            <span class="material-symbols-outlined">location_on</span>
+                                        </div>
+                                        <div class="flex flex-col justify-center">
+                                            <p
+                                                class="text-text-primary dark:text-white text-base font-medium leading-normal">
+                                                123 Maple Street, Unit 4B, Toronto, ON, M5H 2N2</p>
+                                            <p
+                                                class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal">
+                                                Property &amp; Unit</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-full bg-center bg-no-repeat aspect-[21/9] bg-cover rounded-lg object-cover"
+                                        data-alt="Map showing property location" data-location="Toronto"
+                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAOPmO5m1BPj7R_JEZ4Sh2vWYhh-ypN5UOIu7lZGwMra_BjrBolnIeBR5muYckqnmJi68bN3GWtVP86w9-fzoSFlwUctcKY_tfr8e3jiDK2Dcbt38X1ooE-LC6h0-wOrnN9dto_cMV-CWzj47BVUtWaK6gidJVCrsQvcALtiGj5Ul2jRqsnAhvOisGdnmYRMgMqKa2M4hYOzz4ZWnv1oBVZjaZLVDX_hkpViy5WfinqwwikZysLg03vx4QDFaSkT_1xd0mEncpTzTA');">
+                                    </div>
+                                    <div class="flex items-start gap-4">
+                                        <div
+                                            class="text-text-secondary dark:text-gray-400 flex items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 shrink-0 size-12 mt-1">
+                                            <span class="material-symbols-outlined">report</span>
+                                        </div>
+                                        <div class="flex flex-col justify-center">
+                                            <p
+                                                class="text-text-primary dark:text-white text-base font-medium leading-normal">
+                                                Issue: Leaky Faucet</p>
+                                            <p
+                                                class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal">
+                                                The kitchen faucet has been dripping constantly for the past two days,
+                                                causing water wastage and an annoying sound. The drip is consistent and
+                                                seems to be coming from the base of the spout.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Photo Documentation -->
+                        <div
+                            class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-700">
+                            <h2
+                                class="text-text-primary dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] px-6 pt-5 pb-3 border-b border-gray-200 dark:border-gray-700">
+                                Photo Documentation</h2>
+                            <div class="p-6">
+                                <div class="flex flex-col gap-4">
+                                    <div>
+                                        <h3 class="text-text-primary dark:text-white font-semibold mb-3">Before</h3>
+                                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                            <img class="rounded-lg aspect-square w-full object-cover"
+                                                data-alt="Leaky faucet before repair"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwJzEZIyro6gzUdyiOx0S4unHR043FrHbXISlCGLpxQVwCzB5dohbOfvXGftU9l3aLN3yPk4aIlOPsH73oGC5gu3sYwsPN8kbiox5ThEy0YcSN8FcXhUY_J-nMfQlbK437_k_uVyNaxu34OO2F4kjh8jGgI2J6S7i0s783tDzLtXQC48UNYsjL7kJr7xgNpT7lVnOaoJMn0ZnB5BL8Oqx7Jmq95izowsm3CoPhVS_4vImTzc9KQiGaFz164Re7tuwVWj8ttTd8aEQ" />
+                                            <img class="rounded-lg aspect-square w-full object-cover"
+                                                data-alt="Close up of dripping faucet"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDgWcQ8rGNkpqM4fUGiU_71BQC-QUAzqEf-ZzvcnQdXHiFome437pAKxaJ75I0iUFSgmtNQowcuvC5fV73S04rZ6jrwautV72Ia2AvDoASLFX79M8JYgZ9QP1jSZNo273p2SgWqaYiEVMr9sqzbh2AZALRpCKWsWujx4BxuW_6FaRMhx3P15I-YAaFumaKUotnQOvDCkra_pUy2BJseFiRqVFDkB4TYbqYPK0On_-PC0tf1caEw7AD2b-JN-JUDf8gphvOu-7u6QE" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-text-primary dark:text-white font-semibold mb-3">During</h3>
+                                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                            <div
+                                                class="rounded-lg aspect-square w-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-text-secondary dark:text-gray-500">
+                                                <p class="text-sm">No photos yet</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-text-primary dark:text-white font-semibold mb-3">After</h3>
+                                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                            <div
+                                                class="rounded-lg aspect-square w-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-text-secondary dark:text-gray-500">
+                                                <p class="text-sm">No photos yet</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cost Management -->
+                        <div
+                            class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-700">
+                            <div
+                                class="flex flex-wrap items-center justify-between gap-2 px-6 pt-5 pb-3 border-b border-gray-200 dark:border-gray-700">
+                                <h2
+                                    class="text-text-primary dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">
+                                    Cost Management</h2>
+                                <button
+                                    class="flex items-center justify-center gap-2 rounded-lg bg-primary/10 dark:bg-primary/20 px-4 py-2 text-sm font-medium text-primary">
+                                    <span class="material-symbols-outlined text-base">task_alt</span>
+                                    Approve Estimate
+                                </button>
+                            </div>
+                            <div class="p-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-sm text-text-secondary dark:text-gray-400">Estimated Cost</label>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">$150.00</p>
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-sm text-text-secondary dark:text-gray-400">Actual Cost</label>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">-</p>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <h4 class="text-base font-semibold text-text-primary dark:text-white mb-2">Cost
+                                        Breakdown</h4>
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-left">
+                                            <thead
+                                                class="bg-gray-50 dark:bg-gray-800 text-sm text-text-secondary dark:text-gray-400">
+                                                <tr>
+                                                    <th class="p-3 font-medium">Item</th>
+                                                    <th class="p-3 font-medium">Quantity</th>
+                                                    <th class="p-3 font-medium text-right">Cost</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                                    <td class="p-3">Labor</td>
+                                                    <td class="p-3">2 hours</td>
+                                                    <td class="p-3 text-right">$100.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                                    <td class="p-3">Replacement Washer Kit</td>
+                                                    <td class="p-3">1</td>
+                                                    <td class="p-3 text-right">$15.00</td>
+                                                </tr>
+                                                <tr class="border-b border-gray-200 dark:border-gray-700">
+                                                    <td class="p-3">Service Fee</td>
+                                                    <td class="p-3">1</td>
+                                                    <td class="p-3 text-right">$35.00</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Activity Timeline -->
+                        <div
+                            class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-700">
+                            <h2
+                                class="text-text-primary dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] px-6 pt-5 pb-3 border-b border-gray-200 dark:border-gray-700">
+                                Timeline &amp; Comments</h2>
+                            <div class="p-6">
+                                <div class="flex flex-col gap-6">
+                                    <!-- Timeline Item -->
+                                    <div class="flex gap-4">
+                                        <div class="flex flex-col items-center">
+                                            <div
+                                                class="flex items-center justify-center size-8 rounded-full bg-primary text-white">
+                                                <span class="material-symbols-outlined text-base">assignment_ind</span>
+                                            </div>
+                                            <div class="w-px h-full bg-gray-200 dark:bg-gray-700"></div>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-text-primary dark:text-white">Vendor Assigned</p>
+                                            <p class="text-sm text-text-secondary dark:text-gray-400">John Smith from
+                                                'Pro Plumbers' has been assigned. Oct 27, 2023, 09:00 AM</p>
+                                        </div>
+                                    </div>
+                                    <!-- Timeline Item -->
+                                    <div class="flex gap-4">
+                                        <div class="flex flex-col items-center">
+                                            <div
+                                                class="flex items-center justify-center size-8 rounded-full bg-accent text-white">
+                                                <span class="material-symbols-outlined text-base">request_quote</span>
+                                            </div>
+                                            <div class="w-px h-full bg-gray-200 dark:bg-gray-700"></div>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-text-primary dark:text-white">Estimate Submitted
+                                            </p>
+                                            <p class="text-sm text-text-secondary dark:text-gray-400">An estimate of
+                                                $150.00 was submitted for approval. Oct 27, 2023, 11:30 AM</p>
+                                            <div
+                                                class="mt-3 p-4 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                                                <p class="text-sm text-text-secondary dark:text-gray-300"><span
+                                                        class="font-semibold text-text-primary dark:text-white">John
+                                                        Smith:</span> "Hi, I've submitted the estimate. It includes 2
+                                                    hours of labor and the necessary parts. Let me know if you approve."
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Timeline Item -->
+                                    <div class="flex gap-4">
+                                        <div class="flex flex-col items-center">
+                                            <div
+                                                class="flex items-center justify-center size-8 rounded-full bg-gray-300 dark:bg-gray-600 text-text-primary dark:text-white">
+                                                <span class="material-symbols-outlined text-base">comment</span></div>
+                                        </div>
+                                        <div>
+                                            <div class="flex items-center gap-3">
+                                                <img class="size-8 rounded-full object-cover" data-alt="User avatar"
+                                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIpAPivt2ZLPW7Q3l-5aHTAiLymdfseqlomMIs3fHwKsDH3AyhA_bOS_A1Yuvljky3rWEyKAzq804_nWtewrqkKE7OTXds-NXJ7zF2OmJRPgDe8B-RIlkGYJd1DaXuP-SSObByAT-cjUeg41Xu_NLzbM_UpY5ABOzqZm_lUm2Ptrvp2mN_w2FDzLd9rK47x9buA6C-LP4VHW7wFJFFmY4vOe_-mMaob3sAqcIwUablKoX5_42vG-XMbmP6AAxlZWImRinriS4xh_Y" />
+                                                <input
+                                                    class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:ring-primary focus:border-primary text-sm"
+                                                    placeholder="Add a comment..." type="text" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Column -->
+                    <div class="lg:col-span-1 flex flex-col gap-8">
+                        <!-- Action Buttons -->
+                        <div
+                            class="bg-white dark:bg-background-dark p-4 rounded-xl border border-gray-200 dark:border-gray-700 flex flex-col gap-3">
+                            <button
+                                class="w-full flex items-center justify-center gap-2 rounded-lg bg-success/20 px-4 py-3 text-lg font-bold text-success disabled:opacity-50"
+                                disabled="">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                Mark Complete
+                            </button>
+                            <button
+                                class="w-full flex items-center justify-center gap-2 rounded-lg bg-gray-200 dark:bg-gray-700 px-4 py-2 text-sm font-medium text-text-primary dark:text-white">
+                                <span class="material-symbols-outlined text-base">update</span>
+                                Request Update
+                            </button>
+                        </div>
+                        <!-- Assigned Vendor Card -->
+                        <div
+                            class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-700">
+                            <h2
+                                class="text-text-primary dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] px-6 pt-5 pb-3 border-b border-gray-200 dark:border-gray-700">
+                                Assigned Vendor</h2>
+                            <div class="p-6 flex flex-col gap-4">
+                                <div class="flex items-center gap-4">
+                                    <img class="size-14 rounded-full object-cover" data-alt="Vendor profile picture"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSwbT2baGABEM3vkWS4Vskg1wqVymsVgZxIVCEEJgkZg7z-SgGy4_6untwmpbmG8QzirFVqzQMyWbxUdlHXTnMRbAnmhvSiFLq30WGAd8o7I3iINt3fOdPmoBtySOoQx3dr9CJaHaSOTTV4X8GoxgHLHVvNL6DmJKORhlBrUbO5A_gtXkmDP4whQiJKUzc9UXYhC53nrdHcsCjpmVfnrtFNf4z2nyrXNSAiNM6KIJKtznXNfBrNPwhydE41IAvwSqX45Jpq7Cn75s" />
+                                    <div>
+                                        <p class="font-bold text-lg text-text-primary dark:text-white">John Smith</p>
+                                        <p class="text-sm text-text-secondary dark:text-gray-400">Pro Plumbers</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <span
+                                        class="material-symbols-outlined text-text-secondary dark:text-gray-400">schedule</span>
+                                    <p class="text-sm"><span class="font-medium">ETA:</span> Today, 2:00 PM</p>
+                                </div>
+                                <div class="flex flex-col gap-3">
+                                    <button
+                                        class="w-full flex items-center justify-center gap-2 rounded-lg bg-secondary/20 px-4 py-2 text-sm font-medium text-secondary">
+                                        <span class="material-symbols-outlined text-base">call</span>Call Vendor
+                                    </button>
+                                    <button
+                                        class="w-full flex items-center justify-center gap-2 rounded-lg bg-secondary/20 px-4 py-2 text-sm font-medium text-secondary">
+                                        <span class="material-symbols-outlined text-base">chat</span>Message Vendor
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tenant Info Card -->
+                        <div
+                            class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-700">
+                            <h2
+                                class="text-text-primary dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] px-6 pt-5 pb-3 border-b border-gray-200 dark:border-gray-700">
+                                Tenant Information</h2>
+                            <div class="p-6 flex flex-col gap-4">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="flex size-12 shrink-0 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800">
+                                        <span
+                                            class="material-symbols-outlined text-text-secondary dark:text-gray-400">person</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-text-primary dark:text-white">Jane Doe</p>
+                                        <p class="text-sm text-text-secondary dark:text-gray-400">+1 (416) 555-0123</p>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col gap-3">
+                                    <button
+                                        class="w-full flex items-center justify-center gap-2 rounded-lg bg-secondary/20 px-4 py-2 text-sm font-medium text-secondary">
+                                        <span class="material-symbols-outlined text-base">call</span>Call Tenant
+                                    </button>
+                                    <button
+                                        class="w-full flex items-center justify-center gap-2 rounded-lg bg-secondary/20 px-4 py-2 text-sm font-medium text-secondary">
+                                        <span class="material-symbols-outlined text-base">chat</span>Message Tenant
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Completion Verification Card -->
+                        <div
+                            class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-700">
+                            <h2
+                                class="text-text-primary dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] px-6 pt-5 pb-3 border-b border-gray-200 dark:border-gray-700">
+                                Completion Verification</h2>
+                            <div class="p-6 flex flex-col gap-4">
+                                <p class="text-sm font-medium text-text-secondary dark:text-gray-400">Tenant
+                                    Satisfaction Rating</p>
+                                <div
+                                    class="flex items-center justify-center text-3xl text-gray-300 dark:text-gray-600 gap-1">
+                                    <span class="material-symbols-outlined">star_outline</span>
+                                    <span class="material-symbols-outlined">star_outline</span>
+                                    <span class="material-symbols-outlined">star_outline</span>
+                                    <span class="material-symbols-outlined">star_outline</span>
+                                    <span class="material-symbols-outlined">star_outline</span>
+                                </div>
+                                <p class="text-sm text-center text-text-secondary dark:text-gray-500">Awaiting
+                                    completion</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

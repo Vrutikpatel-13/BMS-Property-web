@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Broadcast Message - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties
+                        </p>
+                    </a>
+
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10"
+                        href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-primary">groups</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/notificationpreferences.html">
+                        <span
+                            class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications
+                        </p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex flex-1 flex-col overflow-y-auto">
+            <div class="p-8">
+                <!-- PageHeading -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-8">
+                    <p class="text-text-primary dark:text-white text-3xl font-bold tracking-tight">Create New Broadcast
+                    </p>
+                    <div class="flex gap-2">
+                        <button
+                            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-gray-200 dark:bg-gray-700 text-text-primary dark:text-white text-sm font-medium leading-normal hover:bg-gray-300 dark:hover:bg-gray-600">
+                            <span class="truncate">Cancel</span>
+                        </button>
+                        <button
+                            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-secondary text-white text-sm font-medium leading-normal hover:bg-secondary/90">
+                            <span class="truncate">Save as Draft</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-8">
+                    <!-- Recipients Section -->
+                    <div class="rounded-lg border border-border-color dark:border-gray-700 bg-white dark:bg-gray-900">
+                        <div class="border-b border-border-color dark:border-gray-700 p-5">
+                            <h2 class="text-text-primary dark:text-white text-lg font-semibold leading-tight">Recipients
+                            </h2>
+                            <p class="text-text-secondary text-sm font-normal pt-1">Select who will receive this
+                                broadcast.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-5">
+                            <!-- Checklists -->
+                            <label
+                                class="flex gap-x-3 p-3 flex-row rounded-md border border-border-color dark:border-gray-700 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer">
+                                <input checked=""
+                                    class="mt-1 h-5 w-5 shrink-0 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                                    type="checkbox" />
+                                <p class="text-text-primary dark:text-white text-sm font-medium">All Tenants</p>
+                            </label>
+                            <label
+                                class="flex gap-x-3 p-3 flex-row rounded-md border border-border-color dark:border-gray-700 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer">
+                                <input
+                                    class="mt-1 h-5 w-5 shrink-0 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                                    type="checkbox" />
+                                <p class="text-text-primary dark:text-white text-sm font-medium">Specific Property</p>
+                            </label>
+                            <label
+                                class="flex gap-x-3 p-3 flex-row rounded-md border border-border-color dark:border-gray-700 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer">
+                                <input
+                                    class="mt-1 h-5 w-5 shrink-0 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                                    type="checkbox" />
+                                <p class="text-text-primary dark:text-white text-sm font-medium">Specific Units</p>
+                            </label>
+                            <label
+                                class="flex gap-x-3 p-3 flex-row rounded-md border border-border-color dark:border-gray-700 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer">
+                                <input
+                                    class="mt-1 h-5 w-5 shrink-0 rounded border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                                    type="checkbox" />
+                                <p class="text-text-primary dark:text-white text-sm font-medium">Custom Selection</p>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Message Section -->
+                    <div class="rounded-lg border border-border-color dark:border-gray-700 bg-white dark:bg-gray-900">
+                        <div class="border-b border-border-color dark:border-gray-700 p-5">
+                            <h2 class="text-text-primary dark:text-white text-lg font-semibold leading-tight">Message
+                            </h2>
+                            <p class="text-text-secondary text-sm font-normal pt-1">Compose the content of your
+                                broadcast.</p>
+                        </div>
+                        <div class="flex flex-col gap-6 p-5">
+                            <div>
+                                <label class="mb-2 block text-sm font-medium text-text-primary dark:text-gray-300"
+                                    for="subject">Subject</label>
+                                <input
+                                    class="w-full rounded-md border-border-color dark:border-gray-700 dark:bg-gray-800 text-sm focus:border-primary focus:ring-primary dark:focus:border-primary dark:focus:ring-primary"
+                                    id="subject" placeholder="e.g., Important Maintenance Notice" type="text" />
+                            </div>
+                            <div>
+                                <label class="mb-2 block text-sm font-medium text-text-primary dark:text-gray-300"
+                                    for="message-body">Message Body</label>
+                                <div class="rounded-md border border-border-color dark:border-gray-700">
+                                    <div
+                                        class="flex items-center gap-2 border-b border-border-color dark:border-gray-700 p-2">
+                                        <button
+                                            class="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-text-secondary"><span
+                                                class="material-symbols-outlined text-base">format_bold</span></button>
+                                        <button
+                                            class="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-text-secondary"><span
+                                                class="material-symbols-outlined text-base">format_italic</span></button>
+                                        <button
+                                            class="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-text-secondary"><span
+                                                class="material-symbols-outlined text-base">format_underlined</span></button>
+                                        <div class="h-5 w-px bg-border-color dark:bg-gray-700 mx-1"></div>
+                                        <button
+                                            class="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-text-secondary"><span
+                                                class="material-symbols-outlined text-base">format_list_bulleted</span></button>
+                                        <button
+                                            class="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-text-secondary"><span
+                                                class="material-symbols-outlined text-base">format_list_numbered</span></button>
+                                        <div class="h-5 w-px bg-border-color dark:bg-gray-700 mx-1"></div>
+                                        <button
+                                            class="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-text-secondary"><span
+                                                class="material-symbols-outlined text-base">link</span></button>
+                                    </div>
+                                    <textarea
+                                        class="w-full border-0 bg-transparent p-3 text-sm focus:ring-0 dark:placeholder:text-gray-500"
+                                        id="message-body" placeholder="Compose your message here..."
+                                        rows="8"></textarea>
+                                </div>
+                            </div>
+                            <div>
+                                <label
+                                    class="mb-2 block text-sm font-medium text-text-primary dark:text-gray-300">Attachments</label>
+                                <div class="flex items-center justify-center w-full">
+                                    <label
+                                        class="flex flex-col items-center justify-center w-full h-32 border-2 border-border-color dark:border-gray-700 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100"
+                                        for="dropzone-file">
+                                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                            <span
+                                                class="material-symbols-outlined text-4xl text-text-secondary">cloud_upload</span>
+                                            <p class="mb-2 text-sm text-text-secondary"><span
+                                                    class="font-semibold text-primary">Click to upload</span> or drag
+                                                and drop</p>
+                                            <p class="text-xs text-text-secondary">PNG, JPG, PDF (MAX. 10MB)</p>
+                                        </div>
+                                        <input class="hidden" id="dropzone-file" type="file" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sending Options Section -->
+                    <div class="rounded-lg border border-border-color dark:border-gray-700 bg-white dark:bg-gray-900">
+                        <div class="border-b border-border-color dark:border-gray-700 p-5">
+                            <h2 class="text-text-primary dark:text-white text-lg font-semibold leading-tight">Sending
+                                Options</h2>
+                            <p class="text-text-secondary text-sm font-normal pt-1">Choose when to send your message.
+                            </p>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <label
+                                    class="flex-1 flex gap-x-3 p-4 flex-row rounded-md border border-border-color dark:border-gray-700 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer">
+                                    <input checked=""
+                                        class="mt-1 h-5 w-5 shrink-0 rounded-full border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                                        name="send-option" type="radio" />
+                                    <div>
+                                        <p class="text-text-primary dark:text-white text-sm font-medium">Send Now</p>
+                                        <p class="text-text-secondary text-xs">Broadcast will be sent immediately.</p>
+                                    </div>
+                                </label>
+                                <label
+                                    class="flex-1 flex gap-x-3 p-4 flex-row rounded-md border border-border-color dark:border-gray-700 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10 cursor-pointer">
+                                    <input
+                                        class="mt-1 h-5 w-5 shrink-0 rounded-full border-gray-300 dark:border-gray-600 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-primary focus:ring-offset-background-light dark:focus:ring-offset-background-dark"
+                                        name="send-option" type="radio" />
+                                    <div>
+                                        <p class="text-text-primary dark:text-white text-sm font-medium">Schedule for
+                                            Later</p>
+                                        <p class="text-text-secondary text-xs">Select a future date and time to send.
+                                        </p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="mt-4 hidden">
+                                <!-- This div would be shown dynamically with JS when "Schedule" is selected -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label
+                                            class="mb-2 block text-sm font-medium text-text-primary dark:text-gray-300"
+                                            for="schedule-date">Date</label>
+                                        <input
+                                            class="w-full rounded-md border-border-color dark:border-gray-700 dark:bg-gray-800 text-sm focus:border-primary focus:ring-primary dark:focus:border-primary dark:focus:ring-primary"
+                                            id="schedule-date" type="date" />
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="mb-2 block text-sm font-medium text-text-primary dark:text-gray-300"
+                                            for="schedule-time">Time</label>
+                                        <input
+                                            class="w-full rounded-md border-border-color dark:border-gray-700 dark:bg-gray-800 text-sm focus:border-primary focus:ring-primary dark:focus:border-primary dark:focus:ring-primary"
+                                            id="schedule-time" type="time" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Action Bar -->
+                    <div class="flex justify-end gap-3 pt-4">
+                        <button
+                            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-gray-200 dark:bg-gray-700 text-text-primary dark:text-white text-sm font-medium leading-normal hover:bg-gray-300 dark:hover:bg-gray-600">
+                            <span class="truncate">Cancel</span>
+                        </button>
+                        <button
+                            class="flex min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-md h-10 px-4 bg-primary text-white text-sm font-medium leading-normal tracking-wide shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark">
+                            <span class="material-symbols-outlined text-lg">send</span>
+                            <span class="truncate">Send Broadcast</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Confirmation Modal (Initially Hidden) -->
+    <!-- Add 'flex' to this div to show it, 'hidden' to hide it -->
+    <div class="fixed inset-0 z-50 items-center justify-center bg-gray-900/50 backdrop-blur-sm hidden">
+        <div class="w-full max-w-md rounded-lg bg-white dark:bg-gray-900 p-8 shadow-2xl">
+            <div class="flex flex-col items-center text-center">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-success/10 text-success">
+                    <span class="material-symbols-outlined text-4xl">task_alt</span>
+                </div>
+                <h3 class="mt-6 text-xl font-semibold text-text-primary dark:text-white">Broadcast Sent Successfully!
+                </h3>
+                <p class="mt-2 text-sm text-text-secondary">Your message has been sent to 256 tenants.</p>
+                <button
+                    class="mt-8 w-full flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-4 bg-primary text-white text-sm font-medium leading-normal hover:bg-primary/90">
+                    <span class="truncate">Done</span>
+                </button>
+            </div>
+        </div>
+    </div>
+   
+
+    </div>
+
+
+
+</body>
+
+</html>

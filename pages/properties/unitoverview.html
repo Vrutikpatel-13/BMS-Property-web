@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Unit Overview - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10"
+                        href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-primary">apartment</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">groups</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="max-w-7xl mx-auto">
+                <div class="layout-content-container flex flex-col w-full mx-auto">
+                    <!-- Breadcrumbs -->
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <a class="text-text-secondary dark:text-gray-400 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary"
+                            href="#">Dashboard</a>
+                        <span class="text-text-secondary dark:text-gray-400 text-sm font-medium leading-normal">/</span>
+                        <a class="text-text-secondary dark:text-gray-400 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary"
+                            href="#">Properties</a>
+                        <span class="text-text-secondary dark:text-gray-400 text-sm font-medium leading-normal">/</span>
+                        <span class="text-text-primary dark:text-white text-sm font-medium leading-normal">The Grand
+                            Plaza</span>
+                    <span class="text-text-secondary dark:text-gray-400 text-sm font-medium leading-normal">/</span>
+                    <a class="text-text-secondary dark:text-gray-400 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary"
+                        href="#">Properties</a>
+                    <span class="text-text-secondary dark:text-gray-400 text-sm font-medium leading-normal">/</span>
+                    <span class="text-text-primary dark:text-white text-sm font-medium leading-normal">The Grand
+                        Plaza</span>
+                </div>
+                <!-- PageHeading -->
+                <div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+                    <div class="flex min-w-72 flex-col gap-1">
+                        <p class="text-text-primary dark:text-white text-3xl font-bold leading-tight tracking-tight">The
+                            Grand Plaza - Unit Overview</p>
+                        <p class="text-text-secondary dark:text-gray-400 text-base font-normal leading-normal">A
+                            comprehensive visual overview of all units.</p>
+                    </div>
+                    <button
+                        class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+                        <span class="material-symbols-outlined text-base">add</span>
+                        <span class="truncate">Add Unit</span>
+                    </button>
+                </div>
+                <!-- Filters and Search -->
+                <div class="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+                    <!-- SegmentedButtons (Floor Selector) -->
+                    <div class="flex flex-1">
+                        <div
+                            class="flex h-10 w-full items-center justify-start rounded-lg bg-gray-100 dark:bg-gray-800 p-1">
+                            <label
+                                class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-3 has-[:checked]:bg-white has-[:checked]:dark:bg-gray-700 has-[:checked]:shadow-sm has-[:checked]:text-text-primary has-[:checked]:dark:text-white text-text-secondary dark:text-gray-400 text-sm font-medium leading-normal">
+                                <span class="truncate">All Floors</span>
+                                <input checked="" class="invisible w-0" name="floor-selector" type="radio"
+                                    value="All Floors" />
+                            </label>
+                            <label
+                                class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-3 has-[:checked]:bg-white has-[:checked]:dark:bg-gray-700 has-[:checked]:shadow-sm has-[:checked]:text-text-primary has-[:checked]:dark:text-white text-text-secondary dark:text-gray-400 text-sm font-medium leading-normal">
+                                <span class="truncate">Floor 1</span>
+                                <input class="invisible w-0" name="floor-selector" type="radio" value="Floor 1" />
+                            </label>
+                            <label
+                                class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-3 has-[:checked]:bg-white has-[:checked]:dark:bg-gray-700 has-[:checked]:shadow-sm has-[:checked]:text-text-primary has-[:checked]:dark:text-white text-text-secondary dark:text-gray-400 text-sm font-medium leading-normal">
+                                <span class="truncate">Floor 2</span>
+                                <input class="invisible w-0" name="floor-selector" type="radio" value="Floor 2" />
+                            </label>
+                            <label
+                                class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-3 has-[:checked]:bg-white has-[:checked]:dark:bg-gray-700 has-[:checked]:shadow-sm has-[:checked]:text-text-primary has-[:checked]:dark:text-white text-text-secondary dark:text-gray-400 text-sm font-medium leading-normal">
+                                <span class="truncate">Penthouse</span>
+                                <input class="invisible w-0" name="floor-selector" type="radio" value="Penthouse" />
+                            </label>
+                        </div>
+                    </div>
+                    <!-- SearchBar -->
+                    <div class="md:max-w-xs w-full">
+                        <label class="flex flex-col min-w-40 h-10 w-full">
+                            <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+                                <div
+                                    class="text-text-secondary dark:text-gray-400 flex border-none bg-gray-100 dark:bg-gray-800 items-center justify-center pl-3 rounded-l-lg border-r-0">
+                                    <span class="material-symbols-outlined text-xl">search</span>
+                                </div>
+                                <input
+                                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-text-primary dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border-none bg-gray-100 dark:bg-gray-800 h-full placeholder:text-text-secondary dark:placeholder:text-gray-500 text-sm font-normal leading-normal"
+                                    placeholder="Search by unit or tenant" value="" />
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <!-- Status Legend -->
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6 px-1">
+                    <div class="flex items-center gap-2">
+                        <div class="size-3 rounded-full bg-status-occupied"></div>
+                        <span class="text-text-secondary dark:text-gray-400 text-xs font-medium">Occupied</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="size-3 rounded-full bg-status-available"></div>
+                        <span class="text-text-secondary dark:text-gray-400 text-xs font-medium">Vacant -
+                            Available</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="size-3 rounded-full bg-status-maintenance"></div>
+                        <span class="text-text-secondary dark:text-gray-400 text-xs font-medium">Vacant -
+                            Maintenance</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="size-3 rounded-full bg-status-not-ready"></div>
+                        <span class="text-text-secondary dark:text-gray-400 text-xs font-medium">Vacant - Not
+                            Ready</span>
+                    </div>
+                </div>
+                <!-- Unit Card Grid -->
+                <!-- Unit Card Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+
+                    <!-- Unit 101 - Occupied -->
+                    <a href="unitdetails.html?unitId=101" class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm
+            border border-transparent hover:border-primary
+            dark:border-gray-700 dark:hover:border-primary
+            overflow-hidden transition-all duration-200 ease-in-out group">
+                        <div class="border-t-4 border-status-occupied p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">Unit 101</p>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">2 Bed, 2 Bath</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-text-secondary dark:text-gray-500 group-hover:text-primary">
+                                    arrow_forward
+                                </span>
+                            </div>
+                            <p class="text-sm text-text-secondary dark:text-gray-400 mt-2">Tenant: Ava Chen</p>
+                        </div>
+                    </a>
+
+                    <!-- Unit 102 - Available -->
+                    <a href="unitdetails.html?unitId=102" class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm
+            border border-transparent hover:border-primary
+            dark:border-gray-700 dark:hover:border-primary
+            overflow-hidden transition-all duration-200 ease-in-out group">
+                        <div class="border-t-4 border-status-available p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">Unit 102</p>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">1 Bed, 1 Bath</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-text-secondary dark:text-gray-500 group-hover:text-primary">
+                                    arrow_forward
+                                </span>
+                            </div>
+                            <p class="text-sm text-text-secondary dark:text-gray-400 mt-2">Vacant</p>
+                        </div>
+                    </a>
+
+                    <!-- Unit 103 - Maintenance -->
+                    <a href="unitdetails.html?unitId=103" class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm
+            border border-transparent hover:border-primary
+            dark:border-gray-700 dark:hover:border-primary
+            overflow-hidden transition-all duration-200 ease-in-out group">
+                        <div class="border-t-4 border-status-maintenance p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">Unit 103</p>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">1 Bed + Den</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-text-secondary dark:text-gray-500 group-hover:text-primary">
+                                    arrow_forward
+                                </span>
+                            </div>
+                            <p class="text-sm text-text-secondary dark:text-gray-400 mt-2">Vacant</p>
+                        </div>
+                    </a>
+
+                    <!-- Unit 104 - Not Ready -->
+                    <a href="unitdetails.html?unitId=104" class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm
+            border border-transparent hover:border-primary
+            dark:border-gray-700 dark:hover:border-primary
+            overflow-hidden transition-all duration-200 ease-in-out group">
+                        <div class="border-t-4 border-status-not-ready p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">Unit 104</p>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">Studio</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-text-secondary dark:text-gray-500 group-hover:text-primary">
+                                    arrow_forward
+                                </span>
+                            </div>
+                            <p class="text-sm text-text-secondary dark:text-gray-400 mt-2">Vacant</p>
+                        </div>
+                    </a>
+
+                    <!-- Unit 105 - Occupied -->
+                    <a href="unitdetails.html?unitId=105" class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm
+            border border-transparent hover:border-primary
+            dark:border-gray-700 dark:hover:border-primary
+            overflow-hidden transition-all duration-200 ease-in-out group">
+                        <div class="border-t-4 border-status-occupied p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">Unit 105</p>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">2 Bed, 2 Bath</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-text-secondary dark:text-gray-500 group-hover:text-primary">
+                                    arrow_forward
+                                </span>
+                            </div>
+                            <p class="text-sm text-text-secondary dark:text-gray-400 mt-2">Tenant: Liam Smith</p>
+                        </div>
+                    </a>
+                    <!-- More Cards -->
+                    <a class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-transparent hover:border-primary dark:border-gray-700 dark:hover:border-primary overflow-hidden transition-all duration-200 ease-in-out group"
+                        href="#">
+                        <div class="border-t-4 border-status-occupied p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">Unit 105</p>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">2 Bed, 2 Bath</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-text-secondary dark:text-gray-500 group-hover:text-primary transition-colors">arrow_forward</span>
+                            </div>
+                            <p class="text-sm text-text-secondary dark:text-gray-400 mt-2">Tenant: Liam Smith</p>
+                        </div>
+                    </a>
+                    <a class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-transparent hover:border-primary dark:border-gray-700 dark:hover:border-primary overflow-hidden transition-all duration-200 ease-in-out group"
+                        href="#">
+                        <div class="border-t-4 border-status-occupied p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">Unit 201</p>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">2 Bed, 2 Bath</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-text-secondary dark:text-gray-500 group-hover:text-primary transition-colors">arrow_forward</span>
+                            </div>
+                            <p class="text-sm text-text-secondary dark:text-gray-400 mt-2">Tenant: Noah Brown</p>
+                        </div>
+                    </a>
+                    <a class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-transparent hover:border-primary dark:border-gray-700 dark:hover:border-primary overflow-hidden transition-all duration-200 ease-in-out group"
+                        href="#">
+                        <div class="border-t-4 border-status-available p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">Unit 202</p>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">1 Bed, 1 Bath</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-text-secondary dark:text-gray-500 group-hover:text-primary transition-colors">arrow_forward</span>
+                            </div>
+                            <p class="text-sm text-text-secondary dark:text-gray-400 mt-2">Vacant</p>
+                        </div>
+                    </a>
+                    <a class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-transparent hover:border-primary dark:border-gray-700 dark:hover:border-primary overflow-hidden transition-all duration-200 ease-in-out group"
+                        href="#">
+                        <div class="border-t-4 border-status-occupied p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">Unit 203</p>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">1 Bed + Den</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-text-secondary dark:text-gray-500 group-hover:text-primary transition-colors">arrow_forward</span>
+                            </div>
+                            <p class="text-sm text-text-secondary dark:text-gray-400 mt-2">Tenant: Emma Jones</p>
+                        </div>
+                    </a>
+                    <a class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-transparent hover:border-primary dark:border-gray-700 dark:hover:border-primary overflow-hidden transition-all duration-200 ease-in-out group"
+                        href="#">
+                        <div class="border-t-4 border-status-occupied p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">Unit 204</p>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">Studio</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-text-secondary dark:text-gray-500 group-hover:text-primary transition-colors">arrow_forward</span>
+                            </div>
+                            <p class="text-sm text-text-secondary dark:text-gray-400 mt-2">Tenant: Olivia Davis</p>
+                        </div>
+                    </a>
+                    <a class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-transparent hover:border-primary dark:border-gray-700 dark:hover:border-primary overflow-hidden transition-all duration-200 ease-in-out group"
+                        href="#">
+                        <div class="border-t-4 border-status-available p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="text-2xl font-bold text-text-primary dark:text-white">Unit 205</p>
+                                    <p class="text-sm text-text-secondary dark:text-gray-400">2 Bed, 2 Bath</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-text-secondary dark:text-gray-500 group-hover:text-primary transition-colors">arrow_forward</span>
+                            </div>
+                            <p class="text-sm text-text-secondary dark:text-gray-400 mt-2">Vacant</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+
+
+    </div>
+</body>
+
+</html>

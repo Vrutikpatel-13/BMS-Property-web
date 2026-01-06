@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Expense Entry - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">groups</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10" 
+                       href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-primary">payments</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg" 
+                   href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg" 
+                   href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="mx-auto max-w-4xl">
+                <!-- Page Heading -->
+                <div class="flex flex-wrap justify-between gap-3 mb-8">
+                    <div class="flex min-w-72 flex-col gap-2">
+                        <h1
+                            class="text-text-primary-light dark:text-text-primary-dark text-4xl font-black leading-tight tracking-[-0.033em]">
+                            Log a New Expense</h1>
+                        <p class="text-text-secondary-light dark:text-text-secondary-dark text-base font-normal leading-normal">
+                            Enter the details below to record a new expense for a property.</p>
+                    </div>
+                </div>
+                <!-- Form Container -->
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-sm border border-border-light dark:border-border-dark">
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+                        <!-- Expense Date -->
+                        <div class="md:col-span-1">
+                            <label class="flex flex-col w-full">
+                                <p
+                                    class="text-text-primary-light dark:text-text-primary-dark text-base font-medium leading-normal pb-2">
+                                    Expense Date</p>
+                                <div class="relative flex w-full items-stretch">
+                                    <input
+                                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-text-primary-light dark:text-text-primary-dark focus:outline-none focus:ring-2 focus:ring-accent border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark h-14 placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal"
+                                        value="2023-10-27" />
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <span
+                                            class="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark">calendar_today</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <!-- Amount -->
+                        <div class="md:col-span-1">
+                            <label class="flex flex-col w-full">
+                                <p
+                                    class="text-text-primary-light dark:text-text-primary-dark text-base font-medium leading-normal pb-2">
+                                    Amount</p>
+                                <div class="relative flex w-full items-stretch">
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                        <span class="text-text-secondary-light dark:text-text-secondary-dark text-base">$</span>
+                                    </div>
+                                    <input
+                                        class="form-input pl-7 flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-text-primary-light dark:text-text-primary-dark focus:outline-none focus:ring-2 focus:ring-accent border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark h-14 placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal"
+                                        placeholder="0.00" type="text" />
+                                </div>
+                            </label>
+                        </div>
+                        <!-- Property/Unit -->
+                        <div class="md:col-span-1">
+                            <label class="flex flex-col w-full">
+                                <p
+                                    class="text-text-primary-light dark:text-text-primary-dark text-base font-medium leading-normal pb-2">
+                                    Property/Unit</p>
+                                <select
+                                    class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-text-primary-light dark:text-text-primary-dark focus:outline-none focus:ring-2 focus:ring-accent border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark h-14 placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal">
+                                    <option value="">Select a property or unit</option>
+                                    <option value="p1">123 Maple Street, Unit 4B</option>
+                                    <option value="p2">456 Oak Avenue, Commercial</option>
+                                    <option value="p3">789 Pine Lane, House</option>
+                                </select>
+                            </label>
+                        </div>
+                        <!-- Expense Category -->
+                        <div class="md:col-span-1">
+                            <label class="flex flex-col w-full">
+                                <p
+                                    class="text-text-primary-light dark:text-text-primary-dark text-base font-medium leading-normal pb-2">
+                                    Expense Category</p>
+                                <select
+                                    class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-text-primary-light dark:text-text-primary-dark focus:outline-none focus:ring-2 focus:ring-accent border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark h-14 placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal">
+                                    <option value="">Select a category (e.g., Maintenance)</option>
+                                    <option value="maint">Maintenance</option>
+                                    <option value="util">Utilities</option>
+                                    <option value="supp">Supplies</option>
+                                    <option value="tax">Property Tax</option>
+                                </select>
+                            </label>
+                        </div>
+                        <!-- Description -->
+                        <div class="md:col-span-2">
+                            <label class="flex flex-col w-full">
+                                <p
+                                    class="text-text-primary-light dark:text-text-primary-dark text-base font-medium leading-normal pb-2">
+                                    Description <span
+                                        class="text-text-secondary-light dark:text-text-secondary-dark font-normal">(Optional)</span>
+                                </p>
+                                <textarea
+                                    class="form-textarea flex w-full min-w-0 flex-1 resize-y overflow-hidden rounded-md text-text-primary-light dark:text-text-primary-dark focus:outline-none focus:ring-2 focus:ring-accent border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark min-h-28 placeholder:text-text-secondary-light dark:placeholder:text-text-secondary-dark p-[15px] text-base font-normal leading-normal"
+                                    placeholder="Add a short description of the expense..."></textarea>
+                            </label>
+                        </div>
+                        <!-- File Uploader -->
+                        <div class="md:col-span-2">
+                            <label class="flex flex-col w-full">
+                                <p
+                                    class="text-text-primary-light dark:text-text-primary-dark text-base font-medium leading-normal pb-2">
+                                    Receipt</p>
+                                <div class="flex items-center justify-center w-full">
+                                    <label
+                                        class="flex flex-col items-center justify-center w-full h-48 border-2 border-border-light dark:border-border-dark border-dashed rounded-lg cursor-pointer bg-background-light dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                        for="dropzone-file">
+                                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                            <span
+                                                class="material-symbols-outlined text-4xl text-text-secondary-light dark:text-text-secondary-dark">cloud_upload</span>
+                                            <p class="mb-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                                                <span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                            <p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">PNG, JPG
+                                                or PDF (MAX. 5MB)</p>
+                                        </div>
+                                        <input class="hidden" id="dropzone-file" type="file" />
+                                    </label>
+                                </div>
+                            </label>
+                        </div>
+                        <!-- Action Buttons -->
+                        <div class="md:col-span-2 flex justify-end gap-4 pt-4">
+                            <button
+                                class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-12 px-6 bg-secondary text-white text-base font-bold leading-normal tracking-wide hover:bg-secondary/90"
+                                type="button">
+                                <span class="truncate">Record Expense</span>
+                            </button>
+                            <button
+                                class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-wide hover:bg-primary/90"
+                                type="submit">
+                                <span class="truncate">Submit for Approval</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

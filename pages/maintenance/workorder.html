@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Work Orders - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">groups</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="max-w-7xl mx-auto">
+                <!-- PageHeading -->
+                <header class="flex flex-wrap justify-between items-center gap-4 mb-6">
+                    <h1
+                        class="text-text-primary-light dark:text-text-primary-dark text-4xl font-black leading-tight tracking-[-0.033em]">
+                        Work Orders</h1>
+                    <a href="createworkorder.html"
+                        class="flex min-w-[84px] items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition">
+                        <span class="truncate">Create New Work Order</span>
+                    </a>
+                </header>
+                <!-- Controls: Search, Filters, Sort -->
+                <div class="space-y-4 mb-6">
+                    <!-- SearchBar -->
+                    <div class="w-full">
+                        <div class="flex-grow">
+                            <label class="flex flex-col w-full">
+                                <div
+                                    class="relative flex w-full items-center rounded-xl h-12 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 shadow-md focus-within:shadow-lg focus-within:border-blue-500 dark:focus-within:border-blue-400 transition-all duration-200">
+                                    <!-- Search Icon -->
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-5">
+                                        <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                        </svg>
+                                    </div>
+                        
+                                    <!-- Input Field -->
+                                    <input type="text"
+                                        class="w-full h-full pl-12 pr-5 bg-transparent text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 text-base focus:outline-none focus:ring-0"
+                                        placeholder="Search by property name or address..." value="" />
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <!-- Chips -->
+                        <div class="flex gap-2 overflow-x-auto">
+                            <button
+                                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary text-white px-4 text-sm font-medium leading-normal">All</button>
+                            <button
+                                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-border-dark px-4 text-sm font-medium leading-normal border border-border-light dark:border-transparent hover:bg-gray-50 dark:hover:bg-gray-600">Open</button>
+                            <button
+                                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-border-dark px-4 text-sm font-medium leading-normal border border-border-light dark:border-transparent hover:bg-gray-50 dark:hover:bg-gray-600">In
+                                Progress</button>
+                            <button
+                                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-border-dark px-4 text-sm font-medium leading-normal border border-border-light dark:border-transparent hover:bg-gray-50 dark:hover:bg-gray-600">Completed</button>
+                            <button
+                                class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-border-dark px-4 text-sm font-medium leading-normal border border-border-light dark:border-transparent hover:bg-gray-50 dark:hover:bg-gray-600">Overdue</button>
+                        </div>
+                        <!-- Sort Dropdown -->
+                        <div class="relative">
+                            <button
+                                class="flex items-center justify-center gap-x-2 h-9 rounded-lg bg-white dark:bg-border-dark px-4 text-sm font-medium leading-normal border border-border-light dark:border-transparent">
+                                <span>Sort by: Priority</span>
+                                <span class="material-symbols-outlined text-base">expand_more</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Work Order Cards Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <!-- Card 1: High Priority, Open -->
+                    <div
+                        class="flex flex-col gap-4 p-4 bg-white dark:bg-background-dark border border-border-light dark:border-border-dark rounded-xl">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-2 text-sm font-medium">
+                                <span
+                                    class="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark text-xl">apartment</span>
+                                <span class="text-text-secondary-light dark:text-text-secondary-dark">Bldg A - Unit
+                                    402</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="inline-flex items-center rounded-full bg-error/10 px-2 py-1 text-xs font-medium text-error">High</span>
+                                <span
+                                    class="inline-flex items-center rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">Open</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary text-xl">plumbing</span>
+                                <h3
+                                    class="text-text-primary-light dark:text-text-primary-dark text-lg font-bold leading-tight">
+                                    Leaky Faucet in Kitchen</h3>
+                            </div>
+                            <p
+                                class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                                Created: Oct 26, 2023</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <div class="flex items-center gap-2">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8"
+                                    data-alt="Profile picture of assigned vendor"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDBkZrusTBxXbtWQ-BNaFJycpHi5I2XX9KHPKpCkEw7m7t_gItYnLNYbOztQQek1EP931GM7Fuqk5E1XgxgIgd20Gn3d05Gb_4dKYPsh0kYrT-WOQr6JX6-4RF36UnsMVLW799sPhkjLftIai_rHQwt2hGsrhNiXsYnz-bzHBQeSyd-xO_ant_L2Dx54GDbEXlBClRi4w5inaHIsSZlvRrw3o19RKPtYiXiLTVy0zuhdrbbLtLriPWuUrsxCtOe_GMLZwVGhE9nE6c");'>
+                                </div>
+                                <span
+                                    class="text-sm text-text-primary-light dark:text-text-primary-dark font-medium">Mike
+                                    P.</span>
+                            </div>
+                            <a href="workorderdetail.html">
+                                <button
+                                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary text-white text-sm font-medium">
+                                    <span>View Details</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card 2: Medium Priority, In Progress -->
+                    <div
+                        class="flex flex-col gap-4 p-4 bg-white dark:bg-background-dark border border-border-light dark:border-border-dark rounded-xl">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-2 text-sm font-medium">
+                                <span
+                                    class="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark text-xl">apartment</span>
+                                <span class="text-text-secondary-light dark:text-text-secondary-dark">Bldg C - Unit
+                                    101</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="inline-flex items-center rounded-full bg-warning/10 px-2 py-1 text-xs font-medium text-warning">Medium</span>
+                                <span
+                                    class="inline-flex items-center rounded-full bg-secondary/10 px-2 py-1 text-xs font-medium text-secondary">In
+                                    Progress</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary text-xl">electrical_services</span>
+                                <h3
+                                    class="text-text-primary-light dark:text-text-primary-dark text-lg font-bold leading-tight">
+                                    Outlet Not Working in Bedroom</h3>
+                            </div>
+                            <p
+                                class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                                Created: Oct 25, 2023</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <div class="flex items-center gap-2">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8"
+                                    data-alt="Profile picture of assigned vendor"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA4h8ngBMhutpcmCX_Ap5WRovbDmAvHRp9q7YxO-zWX2Owl43HicZqyMOOFMJAKQCrTI1YAH9IR6UrHH4m0e62EMy0jHWgO3r97iYzqpaIYSrXFWwFU8bf-Z70mJCJ7DJPT6FACteZmXHnlh9zCNaX-s7nc2_Pn8y08XVmAOSRT5TDEodMHQfVVq7z99acFYtFLT80uJ4jd1-ST3xMMjS6RQ3rr58pkPzvwI2h3ph6XsKLh_kQm3BcbhCpYpCzJQwAJr4s6GPZO3R4");'>
+                                </div>
+                                <span
+                                    class="text-sm text-text-primary-light dark:text-text-primary-dark font-medium">Elec
+                                    Solutions</span>
+                            </div>
+                            <a href="workorderdetail.html">
+                                <button
+                                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary text-white text-sm font-medium">
+                                    <span>View Details</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card 3: Low Priority, Completed -->
+                    <div
+                        class="flex flex-col gap-4 p-4 bg-white dark:bg-background-dark border border-border-light dark:border-border-dark rounded-xl">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-2 text-sm font-medium">
+                                <span
+                                    class="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark text-xl">apartment</span>
+                                <span class="text-text-secondary-light dark:text-text-secondary-dark">Bldg B - Unit
+                                    205</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="inline-flex items-center rounded-full bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-500">Low</span>
+                                <span
+                                    class="inline-flex items-center rounded-full bg-success/10 px-2 py-1 text-xs font-medium text-success">Completed</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary text-xl">door_front</span>
+                                <h3
+                                    class="text-text-primary-light dark:text-text-primary-dark text-lg font-bold leading-tight">
+                                    Squeaky Front Door Hinge</h3>
+                            </div>
+                            <p
+                                class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                                Created: Oct 22, 2023</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <div class="flex items-center gap-2">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8"
+                                    data-alt="Profile picture of assigned vendor"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA-Fw20Ngwvrvdy2Mwf-cYx_47imrRNrXvYurCLal5sZ_sTx6HZSqe1DV0Wnchv5rZjxsO6jt8I-o7XLAQ0BF07NSB9mK2Hz8iXsovNoXfx8Z0MlPakDJVdxcKF5ibpbHva_FZOyP2f8WxRsQwNBjfmChb-ReW3aSzwK82j6IC4dCiAmbnXv5HHTf0rD12zMrXhdnXI5AyAHw3zGHYD4bQZ39LogV_xEKOFW3UGe7OY3B8IsV-KrpVeWgSFJNrjEF6njUOq8cGwuoc");'>
+                                </div>
+                                <span
+                                    class="text-sm text-text-primary-light dark:text-text-primary-dark font-medium">Mike
+                                    P.</span>
+                            </div>
+                            <a href="workorderdetail.html">
+                                <button
+                                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary text-white text-sm font-medium">
+                                    <span>View Details</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card 4: High Priority, Overdue -->
+                    <div
+                        class="flex flex-col gap-4 p-4 bg-white dark:bg-background-dark border border-border-light dark:border-border-dark rounded-xl">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-2 text-sm font-medium">
+                                <span
+                                    class="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark text-xl">apartment</span>
+                                <span class="text-text-secondary-light dark:text-text-secondary-dark">Bldg A - Unit
+                                    310</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="inline-flex items-center rounded-full bg-error/10 px-2 py-1 text-xs font-medium text-error">High</span>
+                                <span
+                                    class="inline-flex items-center rounded-full bg-error/10 px-2 py-1 text-xs font-medium text-error">Overdue</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary text-xl">ac_unit</span>
+                                <h3
+                                    class="text-text-primary-light dark:text-text-primary-dark text-lg font-bold leading-tight">
+                                    AC unit not cooling</h3>
+                            </div>
+                            <p
+                                class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                                Created: Oct 15, 2023</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <div class="flex items-center gap-2">
+                                <div
+                                    class="flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-full size-8">
+                                    <span
+                                        class="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark text-xl">person</span>
+                                </div>
+                                <span
+                                    class="text-sm text-text-secondary-light dark:text-text-secondary-dark italic">Unassigned</span>
+                            </div>
+                            <a href="workorderdetail.html">
+                                <button
+                                    class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary text-white text-sm font-medium">
+                                    <span>View Details</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Empty State Card -->
+                    <div
+                        class="lg:col-span-2 xl:col-span-3 mt-8 flex flex-col items-center justify-center text-center p-12 bg-white dark:bg-background-dark border-2 border-dashed border-border-light dark:border-border-dark rounded-xl">
+                        <span
+                            class="material-symbols-outlined text-5xl text-text-secondary-light dark:text-text-secondary-dark mb-4">search_off</span>
+                        <h3 class="text-xl font-bold text-text-primary-light dark:text-text-primary-dark">No Work Orders
+                            Found</h3>
+                        <p class="text-text-secondary-light dark:text-text-secondary-dark mt-2">Try adjusting your
+                            search or filter to find what you're looking for.</p>
+                        <a href="createworkorder.html">
+                            <button
+                                class="mt-6 flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+                                <span class="truncate">Create a New Work Order</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

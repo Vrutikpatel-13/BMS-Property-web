@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Move-In Checklist - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">groups</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="max-w-7xl mx-auto">
+                <div class="w-full max-w-4xl mx-auto">
+                    <!-- Breadcrumbs -->
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <a class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal hover:text-primary"
+                            href="#">Dashboard</a>
+                        <span
+                            class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal">/</span>
+                        <a class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal hover:text-primary"
+                            href="#">Properties</a>
+                        <span
+                            class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal">/</span>
+                        <a class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal hover:text-primary"
+                            href="#">The Grand Dominion</a>
+                        <span
+                            class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal">/</span>
+                        <a class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal hover:text-primary"
+                            href="#">Unit 4B</a>
+                        <span
+                            class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal">/</span>
+                        <span
+                            class="text-text-primary-light dark:text-text-primary-dark text-base font-medium leading-normal">Move-In
+                            Checklist</span>
+                        class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal">/</span>
+                    <a class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal hover:text-primary"
+                        href="#">Properties</a>
+                    <span
+                        class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal">/</span>
+                    <a class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal hover:text-primary"
+                        href="#">The Grand Dominion</a>
+                    <span
+                        class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal">/</span>
+                    <a class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal hover:text-primary"
+                        href="#">Unit 4B</a>
+                    <span
+                        class="text-text-secondary-light dark:text-text-secondary-dark text-base font-medium leading-normal">/</span>
+                    <span
+                        class="text-text-primary-light dark:text-text-primary-dark text-base font-medium leading-normal">Move-In
+                        Checklist</span>
+                </div>
+                <!-- PageHeading -->
+                <div class="flex flex-wrap justify-between items-center gap-3 mb-6">
+                    <div class="flex min-w-72 flex-col gap-1">
+                        <h1
+                            class="text-text-primary-light dark:text-text-primary-dark text-4xl font-black leading-tight tracking-[-0.033em]">
+                            Move-In Coordination</h1>
+                        <p
+                            class="text-text-secondary-light dark:text-text-secondary-dark text-base font-normal leading-normal">
+                            Tenant: Olivia Chen | 123 Maple St, Unit 4B | Move-In: Aug 15, 2024</p>
+                    </div>
+                </div>
+                <!-- Main Card -->
+                <div
+                    class="bg-white dark:bg-gray-900 rounded-xl border border-border-light dark:border-border-dark shadow-sm">
+                    <!-- ToolBar -->
+                    <div
+                        class="flex flex-wrap justify-between items-center gap-4 p-4 border-b border-border-light dark:border-border-dark">
+                        <div class="flex gap-2">
+                            <div class="relative w-48">
+                                <select
+                                    class="w-full appearance-none rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-gray-800 py-2 pl-3 pr-10 text-sm text-text-primary-light dark:text-text-primary-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
+                                    <option>All Tasks</option>
+                                    <option>Pending</option>
+                                    <option>Completed</option>
+                                </select>
+                                <span
+                                    class="material-symbols-outlined pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-text-secondary-light dark:text-text-secondary-dark">expand_more</span>
+                            </div>
+                        </div>
+                        <button
+                            class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-white dark:bg-gray-800 text-text-primary-light dark:text-text-primary-dark border border-border-light dark:border-border-dark hover:bg-gray-50 dark:hover:bg-gray-700 gap-2 text-sm font-bold leading-normal tracking-wide min-w-0 px-4">
+                            <span class="material-symbols-outlined" style="font-size: 20px;">print</span>
+                            <span class="truncate">Print Checklist</span>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <!-- ProgressBar -->
+                        <div class="flex flex-col gap-2 mb-8">
+                            <div class="flex gap-6 justify-between items-center">
+                                <p
+                                    class="text-text-primary-light dark:text-text-primary-dark text-base font-medium leading-normal">
+                                    Checklist Progress</p>
+                                <p
+                                    class="text-text-primary-light dark:text-text-primary-dark text-sm font-medium leading-normal">
+                                    57%</p>
+                            </div>
+                            <div class="w-full rounded-full bg-gray-200 dark:bg-gray-700 h-2.5">
+                                <div class="bg-primary h-2.5 rounded-full" style="width: 57%;"></div>
+                            </div>
+                            <p
+                                class="text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal leading-normal">
+                                4 of 7 tasks completed</p>
+                        </div>
+                        <!-- Checklist Area -->
+                        <div class="flex flex-col gap-2">
+                            <!-- Checklist Item: Completed -->
+                            <div
+                                class="flex items-center p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/50">
+                                <input checked=""
+                                    class="h-6 w-6 rounded border-gray-300 text-success focus:ring-success" id="task1"
+                                    type="checkbox" />
+                                <label class="ml-4 flex-1" for="task1">
+                                    <p
+                                        class="text-text-primary-light dark:text-text-primary-dark font-medium line-through">
+                                        Schedule move-in inspection</p>
+                                    <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Completed
+                                        on Aug 01, 2024</p>
+                                </label>
+                                <div class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-success/20 text-success">
+                                    Completed</div>
+                            </div>
+                            <!-- Checklist Item: Completed -->
+                            <div
+                                class="flex items-center p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/50">
+                                <input checked=""
+                                    class="h-6 w-6 rounded border-gray-300 text-success focus:ring-success" id="task2"
+                                    type="checkbox" />
+                                <label class="ml-4 flex-1" for="task2">
+                                    <p
+                                        class="text-text-primary-light dark:text-text-primary-dark font-medium line-through">
+                                        Collect security deposit</p>
+                                    <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Completed
+                                        on Aug 01, 2024</p>
+                                </label>
+                                <div class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-success/20 text-success">
+                                    Completed</div>
+                            </div>
+                            <!-- Checklist Item: Completed -->
+                            <div
+                                class="flex items-center p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/50">
+                                <input checked=""
+                                    class="h-6 w-6 rounded border-gray-300 text-success focus:ring-success" id="task3"
+                                    type="checkbox" />
+                                <label class="ml-4 flex-1" for="task3">
+                                    <p
+                                        class="text-text-primary-light dark:text-text-primary-dark font-medium line-through">
+                                        Collect first month's rent</p>
+                                    <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Completed
+                                        on Aug 01, 2024</p>
+                                </label>
+                                <div class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-success/20 text-success">
+                                    Completed</div>
+                            </div>
+                            <!-- Checklist Item: Completed -->
+                            <div
+                                class="flex items-center p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/50">
+                                <input checked=""
+                                    class="h-6 w-6 rounded border-gray-300 text-success focus:ring-success" id="task4"
+                                    type="checkbox" />
+                                <label class="ml-4 flex-1" for="task4">
+                                    <p
+                                        class="text-text-primary-light dark:text-text-primary-dark font-medium line-through">
+                                        Collect key/fob deposit</p>
+                                    <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Completed
+                                        on Aug 05, 2024</p>
+                                </label>
+                                <div class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-success/20 text-success">
+                                    Completed</div>
+                            </div>
+                            <!-- Checklist Item: Pending -->
+                            <div
+                                class="flex items-center p-4 rounded-lg bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark">
+                                <input class="h-6 w-6 rounded border-gray-300 text-primary focus:ring-primary"
+                                    id="task5" type="checkbox" />
+                                <label class="ml-4 flex-1" for="task5">
+                                    <p class="text-text-primary-light dark:text-text-primary-dark font-medium">Complete
+                                        pre-move-in inspection</p>
+                                </label>
+                                <div class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning/20 text-warning">
+                                    Pending</div>
+                            </div>
+                            <!-- Checklist Item: Pending -->
+                            <div
+                                class="flex items-center p-4 rounded-lg bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark">
+                                <input class="h-6 w-6 rounded border-gray-300 text-primary focus:ring-primary"
+                                    id="task6" type="checkbox" />
+                                <label class="ml-4 flex-1" for="task6">
+                                    <p class="text-text-primary-light dark:text-text-primary-dark font-medium">Hand over
+                                        keys/fobs</p>
+                                </label>
+                                <div class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning/20 text-warning">
+                                    Pending</div>
+                            </div>
+                            <!-- Checklist Item: Pending -->
+                            <div
+                                class="flex items-center p-4 rounded-lg bg-white dark:bg-gray-800 border border-border-light dark:border-border-dark">
+                                <input class="h-6 w-6 rounded border-gray-300 text-primary focus:ring-primary"
+                                    id="task7" type="checkbox" />
+                                <label class="ml-4 flex-1" for="task7">
+                                    <p class="text-text-primary-light dark:text-text-primary-dark font-medium">Send
+                                        digital welcome package</p>
+                                </label>
+                                <div class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning/20 text-warning">
+                                    Pending</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

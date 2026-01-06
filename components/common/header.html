@@ -1,0 +1,46 @@
+<!-- Common Header Component -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-gray-700 px-4 py-4 md:px-6 bg-white dark:bg-gray-800">
+    <div class="flex items-center gap-4">
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" 
+                 data-alt="Company Logo" 
+                 style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD_PL72_Db8nLPyVF-T8Vwk0aaYmr9hChBgH45w7rZL2DEKICTyKU1I5FMf24R4FwlO9aR9Q0rwcjvEjy1-5My9XkeF1jRbqtjBqytN1rTh3La3M7_NoxdeJB_JJ4HE18EZ0uuYl_I0d50JJb4J1bExiblu6gi-wztSkwTLsJ4eB7ijmiWxNsEcb5Do9XRaQto1oofK_3rObiF02IGNIKnrM2-MSsPZibVkFztCZH963lg_Vw7JA0aeXwuqe67mFbNwyyvg7kes87o");'>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold leading-tight tracking-[-0.015em] text-text-primary dark:text-white">
+                    BMS Property Manager
+                </h1>
+            </div>
+        </div>
+        
+        <!-- User Info -->
+        <div class="flex items-center gap-4">
+            <div class="flex flex-col">
+                <p class="text-sm font-medium text-text-primary dark:text-white" id="userName">Good morning, User</p>
+                <p class="text-xs text-text-secondary" id="propertyName">Property Management</p>
+            </div>
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" 
+                 data-alt="User profile picture" 
+                 id="userAvatar"
+                 style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBrcmPO1KO82sOFQjlkSv6su5pdgS6pTrZ2bs1X3W6swrntHXHMi3yWeUtmWhWK__0kU_2JkqCUFQ2cZMqyPFaKdPvDUyVrSp5HQsH7435-SG07G1boXkIeN4r7OkoNSl406TmL3z6b6fPHhbeaTOG5PsVx7yoIgv0ICoUM20L3qjoqeaUlHClQM0ZZIyjQIIShFe0dW6NyWDTFEwa1WphhKPYBPpw9HsQ4qtG7fR-21SfcnI_RMMUVOklp33iIrCLOM_CqxnM7hQo");'>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Actions -->
+    <div class="flex flex-1 justify-end gap-3 md:gap-4">
+        <button class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-gray-100 dark:bg-gray-800 text-text-primary dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                data-theme-toggle>
+            <span class="material-symbols-outlined">dark_mode</span>
+        </button>
+        <button class="relative flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-gray-100 dark:bg-gray-800 text-text-primary dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+            <span class="material-symbols-outlined">notifications</span>
+            <div class="absolute top-1.5 right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-error text-xs font-bold text-white" id="notificationCount">0</div>
+        </button>
+        <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-gray-100 dark:bg-gray-800 text-text-primary dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                onclick="window.location.href='pages/dashboard/profile&accountsetting.html'">
+            <span class="material-symbols-outlined">settings</span>
+        </button>
+    </div>
+</header>

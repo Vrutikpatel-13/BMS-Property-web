@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>In-App Messages - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <!-- <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                        data-alt="John Doe's profile picture"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAAml88zcYHfxfLTBYcAo8ypoV3WGOB6NZQaqy77o05UAxGnyXEQTYb6WGUHhvoEWlC5GMJDLd3QLdNaASimjEk-q8ts5jhaAC2Xw3GoVw_22ETLbG6z4YwXNVWrH7JNKifKBe_SnB4jNp-GyLdb8SW7g5TRsV0tRaM1-3W-x7lxn9syJ7puB1UFReSaM6-dSYLR5gnPGnH2IGOhPy7vdPfVdrkhi8Tc9OPzXKzZA5QopAChEOWAa0k7w5RCK3xpNINMNrz1g2yU5E");'>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-text-primary dark:text-white text-base font-medium leading-normal">John Doe</h1>
+                        <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal">Property
+                            Manager</p>
+                    </div> -->
+
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-primary">dashboard</span>
+                        <p class="text-primary text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">groups</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg" 
+                       href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg" 
+                   href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg" 
+                   href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="flex flex-1">
+            <!-- Conversation Sidebar -->
+            <div
+                class="flex w-[380px] flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark/50">
+                <!-- Header -->
+                <div class="flex flex-wrap justify-between gap-3 p-4 border-b border-slate-200 dark:border-slate-800">
+                    <div class="flex flex-col gap-1">
+                        <p class="text-text-primary dark:text-white text-2xl font-bold leading-tight">Messages</p>
+                        <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal">All your
+                            conversations in one place.</p>
+                    </div>
+                </div>
+                <!-- Search & Filters -->
+                <div class="p-4 border-b border-slate-200 dark:border-slate-800">
+                    <label class="flex flex-col min-w-40 h-11 w-full">
+                        <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+                            <div
+                                class="text-text-secondary dark:text-gray-400 flex border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-slate-900 items-center justify-center pl-3.5 rounded-l-lg border-r-0">
+                                <span class="material-symbols-outlined text-xl">search</span>
+                            </div>
+                            <input
+                                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-primary dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-300 dark:border-slate-700 bg-background-light dark:bg-slate-900 h-full placeholder:text-text-secondary dark:placeholder:text-gray-500 px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal"
+                                placeholder="Search conversations..." value="" />
+                        </div>
+                    </label>
+                    <div class="flex gap-2 pt-3 overflow-x-auto">
+                        <button
+                            class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/10 text-primary px-3 text-sm font-medium">All</button>
+                        <button
+                            class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-slate-800 px-3 hover:bg-slate-200 dark:hover:bg-slate-700 text-text-secondary dark:text-gray-300">
+                            <p class="text-sm font-medium leading-normal">Unread</p>
+                        </button>
+                        <a href="../../pages/tenants/broadcastmessage.html"
+                            class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 dark:bg-slate-800 pl-3 pr-2 hover:bg-slate-200 dark:hover:bg-slate-700 text-text-secondary dark:text-gray-300">
+                            <p class="text-sm font-medium leading-normal">Broadcast</p>
+                            
+                        </a>
+                    </div>
+                </div>
+                <!-- Conversation List -->
+                <div class="flex-1 overflow-y-auto">
+                    <!-- Active Conversation Item -->
+                    <div
+                        class="flex cursor-pointer items-center gap-4 bg-primary/10 dark:bg-primary/20 px-4 min-h-[72px] py-2 justify-between border-l-4 border-primary">
+                        <div class="flex items-center gap-4 w-full min-w-0">
+                            <div class="relative shrink-0">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                    data-alt="Profile picture of Jane Doe"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBy1SwK8lDvc3F5GCi5PFIm_88baHE5vgLwsfuev9Sg56FQ8B6keMJT4j1uc1Gr2SOWr_EyvemocnoGaNCMeYJ_thz2jBTAlRAfdbR4l62eGtEIbFNLqNiPKPNjUCfH8srwnFjj-vTVAQ9_s3BVrliJTjkFqSPgHQfRCQ4u35Xq6PpZPtGspp34Usrzi6G382c39pprrHlxcqtuUdq2O406HNPmsxwwiUELXE9XZx4r_ZZ_2IJGrdeotb9Se27TPHLM2s7jmisYH3A");'>
+                                </div>
+                                <div
+                                    class="absolute bottom-0 right-0 size-3 rounded-full bg-success border-2 border-white dark:border-primary/20">
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center min-w-0">
+                                <div class="flex justify-between items-center">
+                                    <p class="text-text-primary dark:text-white text-base font-medium leading-normal truncate">
+                                        Jane Doe</p>
+                                    <p class="text-text-secondary dark:text-gray-400 text-xs font-normal shrink-0 ml-2">2:45 PM
+                                    </p>
+                                </div>
+                                <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal truncate">
+                                    Sounds good, I'll be there at that time.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Unread Conversation Item -->
+                    <div
+                        class="flex cursor-pointer items-center gap-4 bg-white dark:bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800/50 px-4 min-h-[72px] py-2 justify-between border-l-4 border-transparent">
+                        <div class="flex items-center gap-4 w-full min-w-0">
+                            <div class="relative shrink-0">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                    data-alt="Profile picture of Building A Maintenance"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6WbGzlKNFWO-X4NNBR9tB2ON-2F6d6WxinQbwlsG1KPalnbBp7p9x_k7lH6MtqYZehcDIW5i9noCMWXKtkPonpChujJDVwK_YY8nH_3lUz7ZL6WzbBlYrtokLJlzu3vHR6quIPJrQkIJ7MsphVwpBmax-yE_oz2_ydd81pjwDggN7uECeCqtLrqs-87amTq5MvGcEZLwf7xQ9pT97_XobLshOtK-YRCtut2dOb3adVLwKdeGngGoS_Cx2OzzbeI1g4VhFQauqPmU");'>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center flex-1 min-w-0">
+                                <div class="flex justify-between items-center">
+                                    <p class="text-text-primary dark:text-white text-base font-medium leading-normal truncate">
+                                        Building A Maintenance</p>
+                                    <p class="text-text-secondary dark:text-gray-400 text-xs font-normal shrink-0 ml-2">1:30 PM
+                                    </p>
+                                </div>
+                                <div class="flex justify-between items-start gap-2">
+                                    <p
+                                        class="text-text-secondary dark:text-gray-300 text-sm font-semibold leading-normal truncate">
+                                        Hey, the plumber is scheduled for tomorrow.</p>
+                                    <div class="flex size-5 items-center justify-center rounded-full bg-error shrink-0">
+                                        <p class="text-white text-xs font-bold">3</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Read Conversation Item -->
+                    <div
+                        class="flex cursor-pointer items-center gap-4 bg-white dark:bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800/50 px-4 min-h-[72px] py-2 justify-between border-l-4 border-transparent">
+                        <div class="flex items-center gap-4 w-full min-w-0">
+                            <div class="relative shrink-0">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                    data-alt="Profile picture of John Smith"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDnV4Y42Q3SsZETc4-g2zpZF9LNSM9Z4g0e1StSiotupXDCL0qEYev2QKrOgLJstilDVTMlMg6pE9yLF5MObdL0_uwYtwF6CP443ZZdWbHQE6KBqMzO0rDpizl0h9112AI4QHrh7sHH1r5UJZleMCD7FlbJGG7ZvzqAdw0YA02wFbxGzJWzA7gbyKqjd9ZsDed43AjRpOG7dQ--8Y1O9YmPLHG-uqbWI9sjlLrHUzwfmUPui2E2CbMnkQWZrDIxjn37MvkjaXJI6Ls");'>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center min-w-0">
+                                <div class="flex justify-between items-center">
+                                    <p class="text-text-primary dark:text-white text-base font-medium leading-normal truncate">
+                                        John Smith</p>
+                                    <p class="text-text-secondary dark:text-gray-400 text-xs font-normal shrink-0 ml-2">
+                                        Yesterday</p>
+                                </div>
+                                <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal truncate">
+                                    Yes, the rent has been submitted.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="flex cursor-pointer items-center gap-4 bg-white dark:bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800/50 px-4 min-h-[72px] py-2 justify-between border-l-4 border-transparent">
+                        <div class="flex items-center gap-4 w-full min-w-0">
+                            <div class="relative shrink-0">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                    data-alt="Profile picture of Emily White"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDja7fXMtuZJMiHIf-tilOHAFDoyVlGsf6dKNJNnwStCniJOiv94AgvRVkj1BHS3kMce-_To8_kLvq4FhAS47RAagW2uSh1sIBN92TOK4APLWjBLGZ4Zafq9IIMbNTKT5qKgjoDktwLnprTPWILAs9smQgpA0jRvR2oht7OjAdcG_X6HSwlj3CA0siiE5elFRFsUR24lukGA5Gv4Bdg90m5C7iXmDV7rzfKVsBD533aNRl4mV6t-pPgQPDY72eCRftExxfLlQe63w8");'>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center min-w-0">
+                                <div class="flex justify-between items-center">
+                                    <p class="text-text-primary dark:text-white text-base font-medium leading-normal truncate">
+                                        Emily White</p>
+                                    <p class="text-text-secondary dark:text-gray-400 text-xs font-normal shrink-0 ml-2">10/28/24
+                                    </p>
+                                </div>
+                                <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal truncate">
+                                    Thanks for the update!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="flex cursor-pointer items-center gap-4 bg-white dark:bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800/50 px-4 min-h-[72px] py-2 justify-between border-l-4 border-transparent">
+                        <div class="flex items-center gap-4 w-full min-w-0">
+                            <div class="relative shrink-0">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12"
+                                    data-alt="Profile picture of Condominium Board"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuACVb6lEo3VVAKEKIlfDp6k9-JI_yqvJ2PMhyvw9MswupM05n3po1iikdnWrBpYqke1aPyRYOwsi-vfTdcc1BOJjrQDtwvuZWth9jtlUg7K7dhCAZYuml95jjDcnYDT-W75HX43wzw-outRmJwtc5-2pUwiIrcuSgVF9fF4TIZK_mGmHebZuR15-JPi_k5xAmVz9ZOKFItITYY35Un7BmMQnqWGWUQQ1hzkHrmH0hXVViiKF7TRQ7et3b4i4_FeIzyXTKrLRByqTMI");'>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center min-w-0">
+                                <div class="flex justify-between items-center">
+                                    <p class="text-text-primary dark:text-white text-base font-medium leading-normal truncate">
+                                        Condominium Board</p>
+                                    <p class="text-text-secondary dark:text-gray-400 text-xs font-normal shrink-0 ml-2">10/27/24
+                                    </p>
+                                </div>
+                                <p class="text-text-secondary dark:text-gray-400 text-sm font-normal leading-normal truncate">
+                                    Reminder: The annual general meeting...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Message View (Placeholder) -->
+            <div class="flex flex-1 flex-col items-center justify-center bg-background-light dark:bg-background-dark p-8">
+                <div class="flex flex-col items-center text-center">
+                    <span class="material-symbols-outlined text-6xl text-primary mb-4">forum</span>
+                    <h2 class="text-xl font-bold text-text-primary dark:text-white">Select a conversation</h2>
+                    <p class="text-text-secondary dark:text-gray-400 mt-2 max-w-xs">Choose one of your existing conversations to
+                        read and reply to messages.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

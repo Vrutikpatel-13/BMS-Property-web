@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Generate Reports - Building Management System</title>
+    <link href="../../assets/css/output.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Standardized Sidebar - All Menu Items -->
+        <aside class="flex w-64 flex-col bg-white dark:bg-gray-800 p-4 border-r border-gray-200 dark:border-gray-700">
+            <!-- User Profile Section -->
+            <div class="flex flex-col gap-4">
+                <div class="flex gap-3 items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">domain</span>
+                        <h2 class="text-lg font-bold tracking-[-0.015em]">BMS</h2>
+                    </div>
+                </div>
+
+                <!-- Main Navigation -->
+                <div class="flex flex-col gap-2 mt-4">
+                    <!-- Dashboard -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/index.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">dashboard</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Dashboard</p>
+                    </a>
+                    
+                    <!-- Properties -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/properties/propertylist.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">apartment</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Properties</p>
+                    </a>
+                    
+                    <!-- Tenants -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/tenantdirectory.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">groups</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Tenants</p>
+                    </a>
+                    
+                    <!-- Payments -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/payments/payment.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">payments</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Payments</p>
+                    </a>
+                    
+                    <!-- Settings -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/dashboard/profile&accountsetting.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">settings</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Settings</p>
+                    </a>
+                    
+                    <!-- Notifications -->
+                    <a class="flex items-center gap-3 px-3 py-2 text-text-secondary dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        href="../../pages/tenants/notificationpreferences.html">
+                        <span class="material-symbols-outlined text-text-primary dark:text-gray-200">notifications</span>
+                        <p class="text-text-primary dark:text-gray-200 text-sm font-medium leading-normal">Notifications</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="mt-auto flex flex-col gap-2">
+                <!-- Delete My Account -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="#" onclick="confirmDeleteAccount()">
+                    <span class="material-symbols-outlined text-error">delete_forever</span>
+                    <p class="text-error text-sm font-medium leading-normal">Delete My Account</p>
+                </a>
+                
+                <!-- Logout -->
+                <a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                    href="../../pages/auth/login.html">
+                    <span class="material-symbols-outlined text-error">logout</span>
+                    <p class="text-error text-sm font-medium leading-normal">Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-8 overflow-y-auto">
+            <div class="max-w-7xl mx-auto">
+                <header class="mb-6">
+                    <h1
+                        class="text-text-primary-light dark:text-text-primary-dark text-4xl font-black leading-tight tracking-[-0.033em]">
+                        Generate &amp; Share Reports</h1>
+                    <p class="text-text-secondary-light dark:text-text-secondary-dark mt-2">Generate, preview, and share
+                        reports for inspections and work orders.</p>
+                </header>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-1 space-y-8">
+                        <!-- Select Report Section -->
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 p-8">
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                                <svg class="w-7 h-7 mr-3 text-blue-600 dark:text-blue-400" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                Select Report
+                            </h2>
+
+                            <div class="space-y-6">
+                                <!-- Report Type -->
+                                <div>
+                                    <label for="report-type"
+                                        class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                        Report Type
+                                    </label>
+                                    <select id="report-type"
+                                        class="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition">
+                                        <option>Inspection Report</option>
+                                        <option>Work Order Summary</option>
+                                        <option>Financial Statement</option>
+                                        <option>Lease Agreement</option>
+                                    </select>
+                                </div>
+
+                                <!-- Property / Unit -->
+                                <div>
+                                    <label for="property-unit"
+                                        class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                        Property / Unit
+                                    </label>
+                                    <select id="property-unit"
+                                        class="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition">
+                                        <option>All Properties</option>
+                                        <option>Bldg A - Unit 402</option>
+                                        <option>Bldg C - Unit 101</option>
+                                        <option>Bldg B - Unit 205</option>
+                                    </select>
+                                </div>
+
+                                <!-- Date Range -->
+                                <div>
+                                    <label for="date-range"
+                                        class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                        Date Range
+                                    </label>
+                                    <input id="date-range" type="date"
+                                        class="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition" />
+                                </div>
+
+                                <!-- Find Report Button -->
+                                <button
+                                    class="w-full flex items-center justify-center gap-3 py-4 px-6 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                    Find Report
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Sharing Options Section -->
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 p-8">
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                                <svg class="w-7 h-7 mr-3 text-green-600 dark:text-green-400" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.032 2.684c.202.404.316.86.316 1.342 0 .482-.114.938-.316 1.342m-9.032-2.684a3 3 0 101.732 2.684m7.3-2.684a3 3 0 11-1.732 2.684" />
+                                </svg>
+                                Sharing Options
+                            </h2>
+
+                            <div class="space-y-6">
+                                <!-- Email to Tenant/Owner -->
+                                <div>
+                                    <label for="email-to"
+                                        class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                        Email to Tenant/Owner
+                                    </label>
+                                    <input id="email-to" type="email"
+                                        placeholder="e.g., tenant@email.com, owner@email.com"
+                                        class="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition" />
+                                </div>
+
+                                <!-- Custom Message -->
+                                <div>
+                                    <label for="email-message"
+                                        class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                                        Custom Message (Optional)
+                                    </label>
+                                    <textarea id="email-message" rows="4"
+                                        placeholder="Please find the attached report..."
+                                        class="w-full px-5 py-4 bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-green-500/20 focus:border-green-500 transition resize-none"></textarea>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="space-y-3">
+                                    <button
+                                        class="w-full flex items-center justify-center gap-3 py-4 px-6 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                        </svg>
+                                        Send Email
+                                    </button>
+
+                                    <button
+                                        class="w-full flex items-center justify-center gap-3 py-4 px-6 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 font-semibold rounded-xl border border-gray-300 dark:border-gray-700 transition">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                                        </svg>
+                                        Save to Property Documents
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <div
+                            class="bg-white dark:bg-background-dark p-6 rounded-xl border border-border-light dark:border-border-dark h-full flex flex-col">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-lg font-bold text-text-primary-light dark:text-text-primary-dark">
+                                    Instant PDF Generation Preview</h2>
+                                <div class="flex items-center gap-2">
+                                    <button
+                                        class="flex items-center justify-center gap-x-2 h-9 rounded-lg bg-white dark:bg-border-dark px-4 text-sm font-medium leading-normal border border-border-light dark:border-transparent hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <span class="material-symbols-outlined text-base">download</span>
+                                        <span>Export</span>
+                                    </button>
+                                    <button
+                                        class="flex items-center justify-center gap-x-2 h-9 rounded-lg bg-white dark:bg-border-dark px-4 text-sm font-medium leading-normal border border-border-light dark:border-transparent hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <span class="material-symbols-outlined text-base">share</span>
+                                        <span>Share</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="flex-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-6 border border-border-light dark:border-border-dark flex items-center justify-center text-center">
+                                <div class="text-text-secondary-light dark:text-text-secondary-dark">
+                                    <span class="material-symbols-outlined text-6xl">picture_as_pdf</span>
+                                    <p class="mt-2 font-medium">Inspection Report - Bldg A, Unit 402.pdf</p>
+                                    <p class="text-sm">Report preview will be generated here.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
